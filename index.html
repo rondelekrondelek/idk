@@ -13,17 +13,14 @@
     <style>
         /* --- PALETA (FINE LINE NAVY) --- */
         :root {
-            /* Tła */
             --bg-cream: #fdfbf7;
             --bg-white: #ffffff;
             
-            /* Tekst */
             --text-main: #2d2420;
             --text-light: #5e504a;
             
-            /* Akcenty */
-            --accent-yellow: #ffc400; /* Energetyczny żółty */
-            --accent-navy: #1e3a8a;   /* Royal Navy - Twój Granat */
+            --accent-yellow: #ffc400;
+            --accent-navy: #1e3a8a; /* Royal Navy */
             
             --radius: 20px;
             --shadow: 0 10px 40px -5px rgba(30, 58, 138, 0.06);
@@ -43,41 +40,20 @@
         }
 
         /* --- DOODLES: ULTRA CIENKA LINIA --- */
-        .doodle-icon, .doodle-small, .doodle-tick, .doodle-dot {
+        .doodle-icon {
+            width: 60px; height: 60px; margin-bottom: 20px; display: block;
             fill: none; 
-            stroke: var(--accent-navy); /* GRANATOWY OBRYS */
-            stroke-width: 0.8px;        /* ULTRA CIENKA LINIA */
+            stroke: var(--accent-navy); 
+            stroke-width: 0.8px; /* ULTRA CIENKA LINIA */
             stroke-linecap: round; stroke-linejoin: round;
             filter: drop-shadow(1px 1px 0px rgba(0,0,0,0.03));
         }
         
-        .doodle-icon { width: 60px; height: 60px; margin-bottom: 20px; display: block; }
-        
-        /* Małe ikonki w tekście */
-        .doodle-small {
-            width: 32px; height: 32px; margin: 0 5px; display: inline-block; vertical-align: middle;
-            transform: translateY(-4px);
-        }
-        
-        /* Ptaszki na liście */
-        .doodle-tick {
-            width: 20px; height: 20px; margin-right: 12px; display: inline-block; vertical-align: middle;
-            stroke-width: 1px; /* Minimalnie grubsze dla czytelności */
-        }
-
-        /* Kropki na liście */
-        .doodle-dot {
-            width: 10px; height: 10px; margin-right: 10px; display: inline-block; vertical-align: middle;
-            fill: var(--accent-navy); stroke: none; opacity: 0.8;
-        }
-
-        /* Animacja rysowania */
-        .doodle-icon path, .doodle-small path, .doodle-tick path {
+        .doodle-icon path {
             stroke-dasharray: 300; stroke-dashoffset: 300;
             transition: stroke-dashoffset 2s ease-out;
         }
-        .active path { stroke-dashoffset: 0; }
-
+        .doodle-icon.active path { stroke-dashoffset: 0; }
 
         /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 10px; }
@@ -105,7 +81,7 @@
 
         .handwritten {
             font-family: 'Caveat', cursive; 
-            color: var(--accent-navy); /* Granatowe pismo */
+            color: var(--accent-navy);
             font-size: 1.7rem; transform: rotate(-3deg); display: inline-block; line-height: 1;
             font-weight: 700;
         }
@@ -162,7 +138,7 @@
             display: flex; flex-direction: column; align-items: center; z-index: 2;
             animation: float 4s ease-in-out infinite;
         }
-        .arrow-svg { width: 50px; height: auto; transform: rotate(-20deg); fill: var(--accent-navy); stroke: none; } /* Strzałka wypełniona */
+        .arrow-svg { width: 50px; height: auto; transform: rotate(-20deg); fill: var(--accent-navy); stroke: none; }
         @keyframes float { 0% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-8px) rotate(0deg); } 100% { transform: translateY(0px) rotate(0deg); } }
 
         /* About & Counters */
@@ -179,7 +155,7 @@
         .counter-label { font-size: 0.85rem; font-weight: 700; color: var(--text-main); }
         
         .about-list { list-style: none; margin-top: 30px; padding: 0; }
-        .about-list li { margin-bottom: 15px; display: flex; align-items: center; }
+        .about-list li { margin-bottom: 15px; font-size: 1.05rem; }
 
         /* Personas */
         .personas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px; }
@@ -200,7 +176,7 @@
         .offer-card:hover { border-color: var(--accent-yellow); box-shadow: var(--shadow); transform: translateY(-5px); }
         .offer-card svg { margin: 0 auto 20px auto; }
         .offer-card ul { text-align: left; padding-left: 0; list-style: none; margin-top: 20px; }
-        .offer-card li { margin-bottom: 10px; display: flex; align-items: center; font-size: 0.95rem; color: var(--text-light); }
+        .offer-card li { margin-bottom: 10px; font-size: 0.95rem; color: var(--text-light); }
         
         .price { font-family: 'Lora', serif; font-size: 1.8rem; font-weight: 700; margin: 15px 0; color: var(--text-main); }
         .price span { font-size: 1rem; font-weight: 400; color: var(--text-light); font-family: 'Lato', sans-serif; }
@@ -298,14 +274,9 @@
         <div class="container hero-grid">
             <div class="hero-text">
                 <span class="handwritten" style="margin-bottom: 10px; display:block;">
-                    Cześć! Tu Ewelina 
-                    <svg class="doodle-small" viewBox="0 0 24 24"><path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/><path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2"/><path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg>
+                    Cześć! Tu Ewelina 👋
                 </span>
-                <h1>Angielski<br><span class="marker">po ludzku.</span>
-                    <svg class="doodle-small" viewBox="0 0 24 24">
-                        <path d="M12 2L14 9L21 9L15 14L17 21L12 16L7 21L9 14L3 9L10 9L12 2Z" />
-                    </svg>
-                </h1>
+                <h1>Angielski<br><span class="marker">po ludzku.</span> ✨</h1>
                 <p>Zapomnij o szkolnej ławce i stresie. Zapraszam Cię na lekcje, które są jak spotkanie przy kawie. Przełam barierę językową w swoim tempie.</p>
                 <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; md:justify-content: flex-start;">
                     <a href="#kontakt" class="btn btn-warm">Umów bezpłatną rozmowę</a>
@@ -341,9 +312,7 @@
                 <div class="signature">Do zobaczenia na lekcji, Ewelina</div>
             </div>
             <div style="background: #fdfbf7; padding: 40px; border-radius: 20px; border: 1px solid #eee;">
-                <h3>Moje podejście: 
-                    <svg class="doodle-small" viewBox="0 0 24 24"><path d="M9 21h6v-2H9v2zm3-19C8.1 2 5 5.1 5 9c0 2.4 1.2 4.5 3 5.7V17c0 .6.4 1 1 1h6c.6 0 1-.4 1-1v-2.3c1.8-1.3 3-3.4 3-5.7 0-3.9-3.1-7-7-7z"/></svg>
-                </h3>
+                <h3>Moje podejście: 💡</h3>
                 
                 <div class="counters-wrapper">
                     <div class="counter-item">
@@ -357,8 +326,8 @@
                 </div>
                 
                 <ul class="about-list">
-                    <li><svg class="doodle-tick" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> <strong>Życiowe tematy</strong> – koniec z czytankami o "Jasiu i Małgosi".</li>
-                    <li><svg class="doodle-tick" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> <strong>Mówienie to priorytet</strong> – gramatyka jest tylko tłem.</li>
+                    <li>✅ <strong>Życiowe tematy</strong> – koniec z czytankami o "Jasiu i Małgosi".</li>
+                    <li>✅ <strong>Mówienie to priorytet</strong> – gramatyka jest tylko tłem.</li>
                 </ul>
             </div>
         </div>
@@ -413,9 +382,9 @@
                     <p style="color:var(--text-light); margin-bottom: 20px;">Dla tych, którzy chcą swobodnie rozmawiać o życiu.</p>
                     <div class="price">120 zł <span>/ 60 min</span></div>
                     <ul>
-                        <li><svg class="doodle-dot" viewBox="0 0 10 10"><circle cx="5" cy="5" r="3" fill="#1e3a8a"/></svg> Luźne konwersacje</li>
-                        <li><svg class="doodle-dot" viewBox="0 0 10 10"><circle cx="5" cy="5" r="3" fill="#1e3a8a"/></svg> Ciekawe artykuły i wideo</li>
-                        <li><svg class="doodle-dot" viewBox="0 0 10 10"><circle cx="5" cy="5" r="3" fill="#1e3a8a"/></svg> Poszerzanie słownictwa</li>
+                        <li>• Luźne konwersacje</li>
+                        <li>• Ciekawe artykuły i wideo</li>
+                        <li>• Poszerzanie słownictwa</li>
                     </ul>
                     <a href="#kontakt" class="btn btn-primary" style="background: #fff; color: var(--text-main); border: 2px solid #eee; text-align:center;">Wybieram to</a>
                 </div>
@@ -431,9 +400,9 @@
                     <p style="color:var(--text-light); margin-bottom: 20px;">Dla HR, finansów, IT. Przygotowanie do spotkań.</p>
                     <div class="price">150 zł <span>/ 60 min</span></div>
                     <ul>
-                        <li><svg class="doodle-dot" viewBox="0 0 10 10"><circle cx="5" cy="5" r="3" fill="#1e3a8a"/></svg> Symulacje rozmów</li>
-                        <li><svg class="doodle-dot" viewBox="0 0 10 10"><circle cx="5" cy="5" r="3" fill="#1e3a8a"/></svg> Pisanie e-maili</li>
-                        <li><svg class="doodle-dot" viewBox="0 0 10 10"><circle cx="5" cy="5" r="3" fill="#1e3a8a"/></svg> Słownictwo branżowe</li>
+                        <li>• Symulacje rozmów</li>
+                        <li>• Pisanie e-maili</li>
+                        <li>• Słownictwo branżowe</li>
                     </ul>
                     <a href="#kontakt" class="btn btn-warm" style="text-align:center;">To dla mnie!</a>
                 </div>
@@ -447,9 +416,9 @@
                     <p style="color:var(--text-light); margin-bottom: 20px;">Strategiczne przygotowanie do certyfikatów.</p>
                     <div class="price">140 zł <span>/ 60 min</span></div>
                     <ul>
-                        <li><svg class="doodle-dot" viewBox="0 0 10 10"><circle cx="5" cy="5" r="3" fill="#1e3a8a"/></svg> Arkusze próbne</li>
-                        <li><svg class="doodle-dot" viewBox="0 0 10 10"><circle cx="5" cy="5" r="3" fill="#1e3a8a"/></svg> Strategie egzaminacyjne</li>
-                        <li><svg class="doodle-dot" viewBox="0 0 10 10"><circle cx="5" cy="5" r="3" fill="#1e3a8a"/></svg> Korekta prac pisemnych</li>
+                        <li>• Arkusze próbne</li>
+                        <li>• Strategie egzaminacyjne</li>
+                        <li>• Korekta prac pisemnych</li>
                     </ul>
                     <a href="#kontakt" class="btn btn-primary" style="background: #fff; color: var(--text-main); border: 2px solid #eee; text-align:center;">Wybieram to</a>
                 </div>
@@ -484,10 +453,7 @@
     <section id="kontakt" class="bg-white section-padding" style="padding-top: 50px;">
         <div class="container contact-box">
             <span class="handwritten contact-note" style="color: #ffd633;">Czekam na wiadomość!</span>
-            <h2>
-                Napisz do mnie
-                <svg class="doodle-small" viewBox="0 0 24 24" style="stroke:#fff; margin-left:15px; transform: rotate(10deg);"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
-            </h2>
+            <h2>Napisz do mnie ✉️</h2>
             <p style="opacity: 0.9; margin-bottom: 40px;">Masz pytania? Chcesz sprawdzić, czy nadajemy na tych samych falach? Umów się na krótką rozmowę.</p>
             <form action="https://formspree.io/f/TWOJ_KOD" method="POST" class="contact-form">
                 <input type="text" name="name" class="input-field" placeholder="Jak masz na imię?" required>
@@ -520,7 +486,7 @@
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    if(entry.target.classList.contains('doodle-icon') || entry.target.classList.contains('doodle-small') || entry.target.classList.contains('doodle-tick')) {
+                    if(entry.target.classList.contains('doodle-icon')) {
                         entry.target.classList.add('active');
                     }
                     if(entry.target.classList.contains('marker')) {
@@ -546,7 +512,7 @@
             });
         }, { threshold: 0.5 });
 
-        document.querySelectorAll('.doodle-icon, .doodle-small, .doodle-tick').forEach(icon => observer.observe(icon));
+        document.querySelectorAll('.doodle-icon').forEach(icon => observer.observe(icon));
         document.querySelectorAll('.counter-num').forEach(num => observer.observe(num));
         document.querySelectorAll('.marker').forEach(m => observer.observe(m));
     </script>
