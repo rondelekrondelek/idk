@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angielski Online | Profesjonalne Lekcje 1:1</title>
+    <meta name="description" content="Indywidualne lekcje angielskiego online dla dorosłych. Business English, konwersacje, przygotowanie do egzaminów. Skuteczna nauka mówienia.">
+    
+    <meta property="og:title" content="Angielski Online - Twoje Imię">
+    <meta property="og:description" content="Przełam barierę językową i zacznij mówić swobodnie.">
+    <meta property="og:image" content="link-do-twojego-zdjecia.jpg">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- ZMIENNE CSS (THEMING) --- */
+        :root {
+            --primary: #2F80ED;
+            --primary-hover: #1d5cb0;
+            --text-main: #1f2937;
+            --text-muted: #4b5563;
+            --bg-body: #ffffff;
+            --bg-card: #f9fafb;
+            --bg-nav: rgba(255, 255, 255, 0.95);
+            --border: #e5e7eb;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        /* Tryb Ciemny */
+        [data-theme="dark"] {
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --bg-body: #111827;
+            --bg-card: #1f2937;
+            --bg-nav: rgba(17, 24, 39, 0.95);
+            --border: #374151;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+        }
+
+        /* --- RESET & BAZA --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+        }
+        ul { list-style: none; }
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; height: auto; }
+
+        /* --- UTILS --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .section-padding { padding: 80px 0; }
+        .text-center { text-align: center; }
+        .text-primary { color: var(--primary); }
+        
+        /* Animacje wejścia */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            will-change: opacity, visibility;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* --- BUTTONS --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        .btn-primary:hover { background-color: var(--primary-hover); transform: translateY(-2px); }
+        .btn-outline {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: transparent;
+        }
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: var(--bg-nav);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 15px 0;
+            transition: background-color 0.3s;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        .nav-link {
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        .nav-link:hover { color: var(--primary); }
+        
+        /* Theme Toggle */
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--text-main);
+            margin-left: 20px;
+        }
+
+        /* Mobile Menu */
+        .hamburger { display: none; cursor: pointer; font-size: 1.5rem; }
+
+        /* --- HERO --- */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 60px;
+        }
+        .hero-benefits {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .benefit-item { display: flex; align-items: center; gap: 8px; }
+        .benefit-icon { color: var(--primary); font-weight: bold; }
+
+        /* --- SEKCJE OGÓLNE --- */
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 60px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- O MNIE --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+        .about-text p { margin-bottom: 20px; color: var(--text-muted); }
+        .how-i-work {
+            background-color: var(--bg-card);
+            padding: 30px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+        .how-i-work h3 { margin-bottom: 20px; font-size: 1.2rem; }
+        .work-list li {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 25px;
+            color: var(--text-muted);
+        }
+        .work-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* --- OFERTA --- */
+        .offer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .offer-card {
+            background-color: var(--bg-card);
+            padding: 40px 30px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+        .offer-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow);
+            border-color: var(--primary);
+        }
+        .offer-icon {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        .offer-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 15px; }
+        .offer-desc { color: var(--text-muted); margin-bottom: 30px; flex-grow: 1; }
+        .price-tag {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-top: auto;
+        }
+        .price-label { font-size: 0.9rem; color: var(--text-muted); font-weight: 400; }
+
+        /* --- DLA KOGO --- */
+        .persona-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .persona-card {
+            text-align: center;
+            padding: 30px;
+        }
+        .persona-icon {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(47, 128, 237, 0.1);
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.5rem;
+        }
+
+        /* --- OPINIE --- */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .testimonial-card {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+        .stars { color: #F2C94C; margin-bottom: 15px; }
+        .review-text { font-style: italic; color: var(--text-muted); margin-bottom: 20px; }
+        .client-name { font-weight: 600; font-size: 0.95rem; }
+
+        /* --- FAQ --- */
+        .faq-container { max-width: 800px; margin: 0 auto; }
+        details {
+            margin-bottom: 15px;
+            background-color: var(--bg-card);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+        summary {
+            padding: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            list-style: none;
+            position: relative;
+            padding-right: 50px;
+        }
+        summary::-webkit-details-marker { display: none; }
+        summary::after {
+            content: '+';
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        details[open] summary::after { content: '-'; }
+        .faq-answer {
+            padding: 0 20px 20px 20px;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+            margin-top: 10px;
+            padding-top: 15px;
+        }
+
+        /* --- KONTAKT --- */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+        .contact-info h3 { margin-bottom: 20px; }
+        .contact-item { margin-bottom: 20px; display: flex; align-items: center; gap: 15px; color: var(--text-muted); }
+        .whatsapp-btn {
+            background-color: #25D366;
+            color: white;
+            border: none;
+            margin-top: 20px;
+        }
+        .whatsapp-btn:hover { background-color: #1ebc57; }
+        
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            background-color: var(--bg-card);
+            color: var(--text-main);
+            font-family: inherit;
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(47, 128, 237, 0.2);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--bg-card);
+            padding: 60px 0 30px;
+            border-top: 1px solid var(--border);
+            margin-top: 80px;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-bio { max-width: 300px; }
+        .footer-links h4 { margin-bottom: 15px; }
+        .footer-links a { display: block; margin-bottom: 10px; color: var(--text-muted); }
+        .footer-links a:hover { color: var(--primary); }
+        .copyright {
+            text-align: center;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* --- SCROLL TO TOP --- */
+        #scrollTopBtn {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+            font-size: 1.5rem;
+            border: none;
+            outline: none;
+            background-color: var(--primary);
+            color: white;
+            cursor: pointer;
+            padding: 10px 15px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        #scrollTopBtn:hover { background-color: var(--primary-hover); transform: translateY(-5px); }
+
+        /* --- RWD --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                background-color: var(--bg-nav);
+                flex-direction: column;
+                padding: 40px 0;
+                transition: 0.3s;
+                border-bottom: 1px solid var(--border);
+            }
+            .nav-menu.active { left: 0; }
+            .hamburger { display: block; }
+            .about-grid, .contact-wrapper, .persona-grid { grid-template-columns: 1fr; }
+            .hero-buttons { flex-direction: column; width: 100%; }
+            .btn { width: 100%; }
+            .hero-benefits { flex-direction: column; gap: 15px; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">TwojeImię<span style="color:var(--text-main)">.pl</span></a>
+            <div class="hamburger" id="hamburger">☰</div>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#o-mnie" class="nav-link">O mnie</a></li>
+                <li><a href="#oferta" class="nav-link">Oferta</a></li>
+                <li><a href="#opinie" class="nav-link">Opinie</a></li>
+                <li><a href="#faq" class="nav-link">FAQ</a></li>
+                <li><a href="#kontakt" class="btn btn-primary">Umów lekcję</a></li>
+                <li><button class="theme-toggle" id="theme-toggle" aria-label="Przełącz tryb">🌙</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero container fade-in-section">
+        <h1>Angielski, który działa<br><span class="text-primary">w pracy i w życiu.</span></h1>
+        <p>Pomagam ambitnym dorosłym przełamać barierę językową i poczuć się pewnie w rozmowach 1:1. Bez stresu, konkretnie i na temat.</p>
+        
+        <div class="hero-buttons">
+            <a href="#kontakt" class="btn btn-primary">Umów lekcję próbną</a>
+            <a href="#oferta" class="btn btn-outline">Zobacz ofertę</a>
+        </div>
+
+        <div class="hero-benefits">
+            <div class="benefit-item"><span class="benefit-icon">✓</span> 100% Konwersacji</div>
+            <div class="benefit-item"><span class="benefit-icon">✓</span> Materiały autorskie</div>
+            <div class="benefit-item"><span class="benefit-icon">✓</span> Elastyczne terminy</div>
+        </div>
+    </header>
+
+    <section id="o-mnie" class="section-padding container fade-in-section">
+        <div class="section-title">O mnie</div>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>Cześć! Jestem lektorem języka angielskiego z pasją do praktycznej komunikacji. Uczę głównie dorosłych z Polski, pomagając im odnaleźć się w międzynarodowym środowisku pracy.</p>
+                <p>Moje podejście opiera się na prostym założeniu: język to narzędzie, a nie zbiór regułek do wykucia. Skupiam się na słownictwie, które realnie Ci się przyda – kolokacjach, idiomach i phrasal verbs, które usłyszysz w biurze i na Netflixie.</p>
+                <p>Mam wieloletnie doświadczenie w pracy z klientami z branży finansowej, HR i IT (cybersecurity). Wiem, jak wygląda "korpo-angielski" i pomagam go okiełznać.</p>
+                <p>Prywatnie? Fan dobrej kawy i nowinek technologicznych. Na zajęciach dbam o luźną, partnerską atmosferę.</p>
+            </div>
+            <div class="how-i-work">
+                <h3>Jak pracuję?</h3>
+                <ul class="work-list">
+                    <li>Warsztatowa forma zajęć – dużo praktyki.</li>
+                    <li>Nacisk na wymowę i niuanse językowe.</li>
+                    <li>Sytuacje z życia wzięte (role-play).</li>
+                    <li>Korzystamy z autorskich e-booków i worksheetów.</li>
+                    <li>Mówimy 90-100% czasu po angielsku.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" style="background-color: var(--bg-card);">
+        <div class="container fade-in-section">
+            <h2 class="section-title">Dla kogo są moje lekcje?</h2>
+            <div class="persona-grid">
+                <div class="persona-card">
+                    <div class="persona-icon">💼</div>
+                    <h3>Zabiegani profesjonaliści</h3>
+                    <p style="color: var(--text-muted)">Dla osób, które potrzebują Business English "na wczoraj", aby swobodnie prowadzić spotkania i pisać maile.</p>
+                </div>
+                <div class="persona-card">
+                    <div class="persona-icon">🤐</div>
+                    <h3>Osoby z blokadą</h3>
+                    <p style="color: var(--text-muted)">Dla tych, którzy dużo rozumieją, ale stresują się, gdy muszą coś powiedzieć. Odblokuję Cię!</p>
+                </div>
+                <div class="persona-card">
+                    <div class="persona-icon">🎯</div>
+                    <h3>Przygotowujący się do zmian</h3>
+                    <p style="color: var(--text-muted)">Planujesz zmianę pracy, wyjazd za granicę lub ważny egzamin językowy? Przygotuję Cię do tego celu.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="oferta" class="section-padding container fade-in-section">
+        <h2 class="section-title">Oferta współpracy</h2>
+        <p class="section-subtitle">Wybierz ścieżkę dopasowaną do Twoich potrzeb. Wszystkie lekcje odbywają się online.</p>
+        
+        <div class="offer-grid">
+            <div class="offer-card">
+                <div class="offer-icon">🗣️</div>
+                <h3 class="offer-title">General English</h3>
+                <p class="offer-desc">Swobodne konwersacje, poszerzanie słownictwa, praktyczna gramatyka. Idealne do podróży i życia codziennego.</p>
+                <div class="price-tag">od 120 PLN <span class="price-label">/ 60 min</span></div>
+            </div>
+
+            <div class="offer-card" style="border-color: var(--primary);">
+                <div class="offer-icon">👔</div>
+                <h3 class="offer-title">Business English</h3>
+                <p class="offer-desc">Angielski w HR, finansach, IT. Przygotowanie do prezentacji, negocjacji i rozmów rekrutacyjnych. Profesjonalne słownictwo.</p>
+                <div class="price-tag">od 150 PLN <span class="price-label">/ 60 min</span></div>
+            </div>
+
+            <div class="offer-card">
+                <div class="offer-icon">🎓</div>
+                <h3 class="offer-title">Egzaminy & Certyfikaty</h3>
+                <p class="offer-desc">Intensywne przygotowanie do FCE, CAE lub matury rozszerzonej. Strategie egzaminacyjne i arkusze próbne.</p>
+                <div class="price-tag">od 140 PLN <span class="price-label">/ 60 min</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="opinie" class="section-padding" style="background-color: var(--bg-card);">
+        <div class="container fade-in-section">
+            <h2 class="section-title">Co mówią uczniowie?</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"W końcu przestałem się bać odzywać na callach. Lekcje są konkretne, a materiały idealnie dopasowane do mojej branży."</p>
+                    <p class="client-name">Tomasz, Project Manager</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Super atmosfera! Gramatyka tłumaczona na życiowych przykładach, a nie nudnych regułkach. Polecam!"</p>
+                    <p class="client-name">Ania, HR Specialist</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Dzięki lekcjom zdobyłam certyfikat CAE i nową pracę. Pełen profesjonalizm i świetne podejście."</p>
+                    <p class="client-name">Katarzyna, Studentka</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Najlepszy lektor, jakiego miałem. Skupiamy się na wymowie i naturalnych zwrotach. Widzę ogromny postęp."</p>
+                    <p class="client-name">Marek, Programista</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="section-padding container fade-in-section">
+        <h2 class="section-title">Częste pytania (FAQ)</h2>
+        <div class="faq-container">
+            <details>
+                <summary>Na jakim poziomie muszę być, żeby zacząć?</summary>
+                <div class="faq-answer">Pracuję z uczniami od poziomu A2 (podstawowy komunikatywny) do C2. Dostosowuję materiały do Twoich umiejętności.</div>
+            </details>
+            <details>
+                <summary>Jak wyglądają zajęcia online?</summary>
+                <div class="faq-answer">Łączymy się przez Google Meet lub Zoom. Korzystamy z interaktywnej tablicy i dokumentów Google Docs, do których masz stały dostęp.</div>
+            </details>
+            <details>
+                <summary>Czy muszę kupować podręcznik?</summary>
+                <div class="faq-answer">Nie. Wszystkie materiały (PDF, wideo, artykuły, autorskie worksheety) otrzymujesz ode mnie w cenie lekcji.</div>
+            </details>
+            <details>
+                <summary>Jak wygląda płatność?</summary>
+                <div class="faq-answer">Płatność odbywa się przelewem lub BLIKiem, zazwyczaj w pakietach za 5 lub 10 lekcji z góry (wystawiam faktury bez VAT).</div>
+            </details>
+            <details>
+                <summary>Co w przypadku odwołania zajęć?</summary>
+                <div class="faq-answer">Zajęcia można bezpłatnie odwołać lub przełożyć do 24h przed terminem. Później lekcja jest płatna w 100%.</div>
+            </details>
+            <details>
+                <summary>Czy są dostępne terminy wieczorne?</summary>
+                <div class="faq-answer">Tak, pracuję w godzinach 8:00 - 20:00, ale terminy wieczorne są najbardziej oblegane, więc warto rezerwować je z wyprzedzeniem.</div>
+            </details>
+        </div>
+    </section>
+
+    <section id="kontakt" class="section-padding" style="background-color: var(--bg-card);">
+        <div class="container fade-in-section">
+            <h2 class="section-title">Skontaktuj się</h2>
+            <p class="section-subtitle">Masz pytania? Chcesz ustalić termin lekcji próbnej? Napisz!</p>
+            
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h3>Dane kontaktowe</h3>
+                    <div class="contact-item">📧 kontakt@twoja-domena.pl</div>
+                    <div class="contact-item">📞 +48 000 000 000</div>
+                    <div class="contact-item">📍 Online (Polska)</div>
+                    
+                    <p style="margin-top: 20px; color: var(--text-muted);">Preferujesz szybki kontakt?</p>
+                    <a href="#" class="btn whatsapp-btn">Napisz na WhatsApp / Telegram</a>
+                </div>
+
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <input type="text" id="name" placeholder="Twoje imię" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" placeholder="Twój email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" rows="5" placeholder="Wiadomość (np. poziom angielskiego, cel nauki)" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Wyślij wiadomość</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-bio">
+                    <h4>Twoje Imię</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Profesjonalny lektor języka angielskiego online. Pomagam przełamać barierę językową i osiągnąć zawodowe cele.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Menu</h4>
+                    <a href="#o-mnie">O mnie</a>
+                    <a href="#oferta">Oferta</a>
+                    <a href="#opinie">Opinie</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Oferta</h4>
+                    <a href="#">Business English</a>
+                    <a href="#">General English</a>
+                    <a href="#">Egzaminy</a>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2024 Twoje Imię. Wszelkie prawa zastrzeżone. | Design: Minimalist
+            </div>
+        </div>
+    </footer>
+
+    <button id="scrollTopBtn" title="Wróć do góry">↑</button>
+
+    <script>
+        // 1. Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Zamknij menu po kliknięciu w link
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // 2. Dark Mode / Light Mode
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        
+        // Sprawdź zapisany motyw
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.setAttribute('data-theme', 'dark');
+            themeToggle.innerText = '☀️';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'light');
+                themeToggle.innerText = '🌙';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                themeToggle.innerText = '☀️';
+            }
+        });
+
+        // 3. Scroll to Top & Intersection Observer
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        const sections = document.querySelectorAll('.fade-in-section');
+
+        const observerOptions = {
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target); // Animuj tylko raz
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        window.onscroll = function() {
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                scrollTopBtn.style.display = "block";
+            } else {
+                scrollTopBtn.style.display = "none";
+            }
+        };
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // 4. Form Validation (Mockup)
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            if(name && email && message) {
+                // Tutaj normalnie byłoby wysyłanie danych na serwer (np. PHP Mailer lub Formspree)
+                alert(`Dziękuję, ${name}! Wiadomość została wysłana (symulacja). Odezwę się na ${email}.`);
+                contactForm.reset();
+            } else {
+                alert('Proszę wypełnić wszystkie pola.');
+            }
+        });
+    </script>
+</body>
+</html>
