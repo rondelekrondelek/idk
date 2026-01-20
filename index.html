@@ -11,24 +11,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Lato:wght@300;400;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
     <style>
-        /* --- PALETA (ELEGANCE & ENERGY) --- */
+        /* --- PALETA (FINE LINE NAVY) --- */
         :root {
-            /* Tła */
             --bg-cream: #fdfbf7;
             --bg-white: #ffffff;
             
-            /* Tekst */
             --text-main: #2d2420;
             --text-light: #5e504a;
             
-            /* Akcenty */
-            --accent-yellow: #ffc400; /* Energetyczny żółty */
-            
-            /* ZMIANA: Głęboki Granat (Royal Navy) */
-            --accent-navy: #1e3a8a; 
+            --accent-yellow: #ffc400;
+            --accent-navy: #1e3a8a; /* Royal Navy */
             
             --radius: 20px;
-            --shadow: 0 10px 40px -5px rgba(30, 58, 138, 0.08); /* Cień z nutą granatu */
+            --shadow: 0 10px 40px -5px rgba(30, 58, 138, 0.06);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -44,17 +39,54 @@
             transition: background-color 0.5s ease;
         }
 
+        /* --- DOODLES: ULTRA CIENKA LINIA --- */
+        .doodle-icon, .doodle-small, .doodle-tick, .doodle-dot {
+            fill: none; 
+            stroke: var(--accent-navy); 
+            stroke-width: 0.8px; /* ZMIANA: Bardzo cienka linia */
+            stroke-linecap: round; stroke-linejoin: round;
+            filter: drop-shadow(1px 1px 0px rgba(0,0,0,0.03));
+        }
+        
+        .doodle-icon { width: 60px; height: 60px; margin-bottom: 20px; display: block; }
+        
+        /* Małe ikonki w tekście */
+        .doodle-small {
+            width: 32px; height: 32px; margin: 0 5px; display: inline-block; vertical-align: middle;
+            transform: translateY(-4px);
+        }
+        
+        /* Ptaszki na liście */
+        .doodle-tick {
+            width: 20px; height: 20px; margin-right: 12px; display: inline-block; vertical-align: middle;
+            stroke: var(--accent-navy); stroke-width: 1.2px; /* Troszkę grubsze żeby były widoczne */
+        }
+
+        /* Kropki na liście */
+        .doodle-dot {
+            width: 10px; height: 10px; margin-right: 10px; display: inline-block; vertical-align: middle;
+            fill: var(--accent-navy); stroke: none; opacity: 0.8;
+        }
+
+        /* Animacja rysowania */
+        .doodle-icon path, .doodle-small path, .doodle-tick path {
+            stroke-dasharray: 300; stroke-dashoffset: 300;
+            transition: stroke-dashoffset 2s ease-out;
+        }
+        .active path { stroke-dashoffset: 0; }
+
+
         /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 12px; }
+        ::-webkit-scrollbar { width: 10px; }
         ::-webkit-scrollbar-track { background: var(--bg-cream); }
         ::-webkit-scrollbar-thumb { 
             background-color: var(--accent-yellow); 
-            border-radius: 6px; border: 3px solid var(--bg-cream); 
+            border-radius: 5px; border: 2px solid var(--bg-cream); 
         }
 
         /* Pasek postępu */
         .scroll-progress {
-            position: fixed; top: 0; left: 0; height: 4px;
+            position: fixed; top: 0; left: 0; height: 3px;
             background: var(--accent-yellow); width: 0%; z-index: 1001;
             transition: width 0.1s;
         }
@@ -70,12 +102,12 @@
 
         .handwritten {
             font-family: 'Caveat', cursive; 
-            color: var(--accent-navy); /* Granatowe pismo */
+            color: var(--accent-navy);
             font-size: 1.7rem; transform: rotate(-3deg); display: inline-block; line-height: 1;
-            font-weight: 700; /* Pogrubione dla czytelności przy cienkiej kresce */
+            font-weight: 700;
         }
         
-        /* Marker Highlight */
+        /* Marker */
         .marker { position: relative; z-index: 1; white-space: nowrap; display: inline-block; }
         .marker::after {
             content: ''; position: absolute; bottom: 2px; left: -5px; height: 12px;
@@ -89,27 +121,6 @@
         .section-padding { padding: 100px 0; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
 
-        /* --- DOODLES: CIENKA LINIA (FINE LINE) --- */
-        .doodle-icon {
-            width: 60px; height: 60px; fill: none; 
-            stroke: var(--accent-navy); 
-            stroke-width: 1; /* ZMIANA: Cienka linia */
-            stroke-linecap: round; stroke-linejoin: round;
-            margin-bottom: 20px; display: block; filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.05));
-        }
-        
-        .doodle-small {
-            width: 40px; height: 40px; margin: 0; display: inline-block; vertical-align: middle;
-            transform: translateY(-5px) rotate(10deg);
-            fill: none; stroke: var(--accent-navy); stroke-width: 1; /* Cienka linia */
-        }
-        
-        .doodle-icon path, .doodle-small path {
-            stroke-dasharray: 300; stroke-dashoffset: 300;
-            transition: stroke-dashoffset 2s ease-out;
-        }
-        .doodle-icon.active path, .doodle-small.active path { stroke-dashoffset: 0; }
-
         /* Buttons */
         .btn {
             display: inline-block; padding: 14px 32px;
@@ -117,7 +128,7 @@
             cursor: pointer; transition: 0.3s; border: 2px solid transparent;
         }
         .btn-primary { background-color: var(--text-main); color: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .btn-primary:hover { transform: translateY(-3px); background-color: var(--accent-navy); } /* Hover na granat */
+        .btn-primary:hover { transform: translateY(-3px); background-color: var(--accent-navy); }
         
         .btn-warm { background-color: var(--accent-yellow); color: var(--text-main); }
         .btn-warm:hover { transform: translateY(-3px); background-color: #ffd633; }
@@ -143,16 +154,13 @@
             box-shadow: var(--shadow); border: 8px solid #fff;
             object-fit: cover; aspect-ratio: 3/4;
         }
-        @keyframes float { 0% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-8px) rotate(0deg); } 100% { transform: translateY(0px) rotate(0deg); } }
         .arrow-note {
             position: absolute; bottom: 425px; left: -50px;
             display: flex; flex-direction: column; align-items: center; z-index: 2;
             animation: float 4s ease-in-out infinite;
         }
-        .arrow-svg { 
-            width: 50px; height: auto; transform: rotate(-20deg); 
-            fill: var(--accent-navy); /* Pełny kolor dla strzałki */
-        }
+        .arrow-svg { width: 50px; height: auto; transform: rotate(-20deg); fill: var(--accent-navy); }
+        @keyframes float { 0% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-8px) rotate(0deg); } 100% { transform: translateY(0px) rotate(0deg); } }
 
         /* About & Counters */
         .about-box { 
@@ -166,6 +174,10 @@
         .counter-item { text-align: center; background: #fff; padding: 15px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
         .counter-num { font-family: 'Lora', serif; font-size: 2rem; font-weight: 700; color: var(--accent-yellow); display: block; }
         .counter-label { font-size: 0.85rem; font-weight: 700; color: var(--text-main); }
+        
+        /* Lista w About - usunięcie domyślnych punktorów */
+        .about-list { list-style: none; margin-top: 30px; padding: 0; }
+        .about-list li { margin-bottom: 15px; display: flex; align-items: center; }
 
         /* Personas */
         .personas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px; }
@@ -181,11 +193,13 @@
         .offer-card {
             background: #fff; padding: 40px; border-radius: 20px;
             border: 2px solid transparent; transition: 0.3s;
-            position: relative; display: flex; flex-direction: column;
-            text-align: center;
+            position: relative; display: flex; flex-direction: column; text-align: center;
         }
-        .offer-card svg { margin: 0 auto 20px auto; }
         .offer-card:hover { border-color: var(--accent-yellow); box-shadow: var(--shadow); transform: translateY(-5px); }
+        .offer-card svg { margin: 0 auto 20px auto; }
+        .offer-card ul { text-align: left; padding-left: 0; list-style: none; margin-top: 20px; }
+        .offer-card li { margin-bottom: 10px; display: flex; align-items: center; font-size: 0.95rem; color: var(--text-light); }
+        
         .price { font-family: 'Lora', serif; font-size: 1.8rem; font-weight: 700; margin: 15px 0; color: var(--text-main); }
         .price span { font-size: 1rem; font-weight: 400; color: var(--text-light); font-family: 'Lato', sans-serif; }
         .tag { 
@@ -193,7 +207,6 @@
             background: var(--accent-yellow); padding: 5px 12px; 
             border-radius: 12px; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px;
         }
-        .offer-card ul { text-align: left; padding-left: 10px; }
 
         /* Testimonials */
         .reviews-section { text-align: center; position: relative; overflow: hidden; background: transparent; }
@@ -215,10 +228,8 @@
             display: flex; justify-content: space-between; align-items: center; list-style: none;
         }
         .faq-item summary::-webkit-details-marker { display: none; }
-        
         .faq-item summary::after {
-            content: '+'; font-size: 2rem; font-weight: 200; /* Cienki plus */
-            color: var(--accent-navy); transition: transform 0.3s ease; line-height: 1;
+            content: '+'; font-size: 2rem; font-weight: 200; color: var(--accent-navy); transition: transform 0.3s ease; line-height: 1;
         }
         .faq-item[open] summary::after { transform: rotate(45deg); color: var(--accent-yellow); }
         .faq-content { padding: 0 25px 25px; color: var(--text-light); }
@@ -257,9 +268,7 @@
         }
         
         /* Wave Separators (SVG) */
-        .wave-separator {
-            width: 100%; overflow: hidden; line-height: 0; position: absolute; left: 0;
-        }
+        .wave-separator { width: 100%; overflow: hidden; line-height: 0; position: absolute; left: 0; }
         .wave-separator svg { display: block; width: calc(100% + 1.3px); height: 60px; }
         .wave-bottom { bottom: 0; }
         .wave-top { top: 0; transform: rotate(180deg); }
@@ -286,7 +295,10 @@
     <header class="bg-cream section-padding" id="section-hero" style="padding-bottom: 150px;">
         <div class="container hero-grid">
             <div class="hero-text">
-                <span class="handwritten" style="margin-bottom: 10px; display:block;">Cześć! Tu Ewelina 👋</span>
+                <span class="handwritten" style="margin-bottom: 10px; display:block;">
+                    Cześć! Tu Ewelina 
+                    <svg class="doodle-small" viewBox="0 0 24 24"><path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/><path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2"/><path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg>
+                </span>
                 <h1>Angielski<br><span class="marker">po ludzku.</span>
                     <svg class="doodle-small" viewBox="0 0 24 24">
                         <path d="M12 2L14 9L21 9L15 14L17 21L12 16L7 21L9 14L3 9L10 9L12 2Z" />
@@ -303,7 +315,7 @@
                 <div class="arrow-note">
                     <span class="handwritten">To ja! :)</span>
                     <svg class="arrow-svg" viewBox="0 0 50 50" width="40">
-                        <path d="M10,10 Q30,5 40,30" fill="none" stroke="#1e3a8a" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        <path d="M10,10 Q30,5 40,30" fill="none" stroke="#1e3a8a" stroke-width="1.5" marker-end="url(#arrowhead)"/>
                         <defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#1e3a8a"/></marker></defs>
                     </svg>
                 </div>
@@ -342,9 +354,9 @@
                     </div>
                 </div>
                 
-                <ul style="list-style: none; margin-top: 30px;">
-                    <li style="margin-bottom: 15px;">✅ <strong>Życiowe tematy</strong> – koniec z czytankami o "Jasiu i Małgosi".</li>
-                    <li style="margin-bottom: 15px;">✅ <strong>Mówienie to priorytet</strong> – gramatyka jest tylko tłem.</li>
+                <ul class="about-list">
+                    <li><svg class="doodle-tick" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> <strong>Życiowe tematy</strong> – koniec z czytankami o "Jasiu i Małgosi".</li>
+                    <li><svg class="doodle-tick" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> <strong>Mówienie to priorytet</strong> – gramatyka jest tylko tłem.</li>
                 </ul>
             </div>
         </div>
@@ -399,9 +411,9 @@
                     <p style="color:var(--text-light); margin-bottom: 20px;">Dla tych, którzy chcą swobodnie rozmawiać o życiu.</p>
                     <div class="price">120 zł <span>/ 60 min</span></div>
                     <ul>
-                        <li>• Luźne konwersacje</li>
-                        <li>• Ciekawe artykuły i wideo</li>
-                        <li>• Poszerzanie słownictwa</li>
+                        <li><svg class="doodle-dot" viewBox="0 0 10 10"><circle cx="5" cy="5" r="3" fill="#1e3a8a"/></svg> Luźne konwersacje</li>
+                        <li><svg class="doodle-dot" viewBox="0 0 10 10"><circle cx="5" cy="5" r="3" fill="#1e3a8a"/></svg> Ciekawe artykuły i wideo</li>
+                        <li><svg class="doodle-dot" viewBox="0 0 10 10"><circle cx="5" cy="5" r="3" fill="#1e3a8a"/></svg> Poszerzanie słownictwa</li>
                     </ul>
                     <a href="#kontakt" class="btn btn-primary" style="background: #fff; color: var(--text-main); border: 2px solid #eee; text-align:center;">Wybieram to</a>
                 </div>
@@ -417,9 +429,9 @@
                     <p style="color:var(--text-light); margin-bottom: 20px;">Dla HR, finansów, IT. Przygotowanie do spotkań.</p>
                     <div class="price">150 zł <span>/ 60 min</span></div>
                     <ul>
-                        <li>• Symulacje rozmów</li>
-                        <li>• Pisanie e-maili</li>
-                        <li>• Słownictwo branżowe</li>
+                        <li><svg class="doodle-dot" viewBox="0 0 10 10"><circle cx="5" cy="5" r="3" fill="#1e3a8a"/></svg> Symulacje rozmów</li>
+                        <li><svg class="doodle-dot" viewBox="0 0 10 10"><circle cx="5" cy="5" r="3" fill="#1e3a8a"/></svg> Pisanie e-maili</li>
+                        <li><svg class="doodle-dot" viewBox="0 0 10 10"><circle cx="5" cy="5" r="3" fill="#1e3a8a"/></svg> Słownictwo branżowe</li>
                     </ul>
                     <a href="#kontakt" class="btn btn-warm" style="text-align:center;">To dla mnie!</a>
                 </div>
@@ -433,9 +445,9 @@
                     <p style="color:var(--text-light); margin-bottom: 20px;">Strategiczne przygotowanie do certyfikatów.</p>
                     <div class="price">140 zł <span>/ 60 min</span></div>
                     <ul>
-                        <li>• Arkusze próbne</li>
-                        <li>• Strategie egzaminacyjne</li>
-                        <li>• Korekta prac pisemnych</li>
+                        <li><svg class="doodle-dot" viewBox="0 0 10 10"><circle cx="5" cy="5" r="3" fill="#1e3a8a"/></svg> Arkusze próbne</li>
+                        <li><svg class="doodle-dot" viewBox="0 0 10 10"><circle cx="5" cy="5" r="3" fill="#1e3a8a"/></svg> Strategie egzaminacyjne</li>
+                        <li><svg class="doodle-dot" viewBox="0 0 10 10"><circle cx="5" cy="5" r="3" fill="#1e3a8a"/></svg> Korekta prac pisemnych</li>
                     </ul>
                     <a href="#kontakt" class="btn btn-primary" style="background: #fff; color: var(--text-main); border: 2px solid #eee; text-align:center;">Wybieram to</a>
                 </div>
@@ -506,7 +518,7 @@
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    if(entry.target.classList.contains('doodle-icon') || entry.target.classList.contains('doodle-small')) {
+                    if(entry.target.classList.contains('doodle-icon') || entry.target.classList.contains('doodle-small') || entry.target.classList.contains('doodle-tick')) {
                         entry.target.classList.add('active');
                     }
                     if(entry.target.classList.contains('marker')) {
@@ -532,7 +544,7 @@
             });
         }, { threshold: 0.5 });
 
-        document.querySelectorAll('.doodle-icon, .doodle-small').forEach(icon => observer.observe(icon));
+        document.querySelectorAll('.doodle-icon, .doodle-small, .doodle-tick').forEach(icon => observer.observe(icon));
         document.querySelectorAll('.counter-num').forEach(num => observer.observe(num));
         document.querySelectorAll('.marker').forEach(m => observer.observe(m));
     </script>
