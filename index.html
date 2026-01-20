@@ -57,19 +57,20 @@
             transition: background-color 0.5s ease;
         }
 
-        /* --- DOODLES --- */
-        .doodle-icon, .doodle-small, .doodle-tick, .doodle-dot {
-            fill: none; stroke: var(--accent-navy); stroke-width: 0.8px;
+        /* --- DOODLES (Ultra Cienka Linia 0.8px) --- */
+        .doodle-icon, .doodle-small {
+            fill: none; 
+            stroke: var(--accent-navy); 
+            stroke-width: 0.8px; 
             stroke-linecap: round; stroke-linejoin: round;
             filter: drop-shadow(1px 1px 0px rgba(0,0,0,0.03));
         }
+        
         .doodle-icon { width: 60px; height: 60px; margin-bottom: 20px; display: block; }
         .doodle-small { width: 32px; height: 32px; margin: 0 5px; display: inline-block; vertical-align: middle; transform: translateY(-4px); }
-        .doodle-tick { width: 20px; height: 20px; margin-right: 12px; display: inline-block; vertical-align: middle; stroke-width: 1px; }
-        .doodle-dot { width: 10px; height: 10px; margin-right: 10px; display: inline-block; vertical-align: middle; fill: var(--accent-navy); stroke: none; opacity: 0.8; }
 
         /* Animacja rysowania */
-        .doodle-icon path, .doodle-small path, .doodle-tick path {
+        .doodle-icon path, .doodle-small path {
             stroke-dasharray: 300; stroke-dashoffset: 300; transition: stroke-dashoffset 2s ease-out;
         }
         .active path { stroke-dashoffset: 0; }
@@ -85,8 +86,16 @@
         h1 { font-size: 3.5rem; }
         h2 { font-size: 2.6rem; }
         h3 { font-size: 1.6rem; }
-        .handwritten { font-family: 'Caveat', cursive; color: var(--accent-navy); font-size: 1.8rem; transform: rotate(-3deg); display: inline-block; line-height: 1; font-weight: 400; }
         
+        /* Cienki font odręczny */
+        .handwritten { 
+            font-family: 'Caveat', cursive; 
+            color: var(--accent-navy); 
+            font-size: 1.8rem; transform: rotate(-3deg); display: inline-block; line-height: 1; 
+            font-weight: 400; 
+        }
+        
+        /* Marker */
         .marker { position: relative; z-index: 1; white-space: nowrap; display: inline-block; }
         .marker::after {
             content: ''; position: absolute; bottom: 2px; left: -5px; height: 12px;
@@ -106,6 +115,8 @@
         
         .btn-warm { background-color: var(--accent-yellow); color: var(--text-main); position: relative; overflow: hidden; }
         .btn-warm:hover { transform: translateY(-3px); background-color: #ffd633; }
+        
+        /* Shimmer Effect */
         .btn-warm::after {
             content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
             background: linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent);
@@ -130,6 +141,8 @@
         .hero-text p { font-size: 1.25rem; color: var(--text-light); margin-bottom: 35px; max-width: 500px; }
         .hero-img-box { position: relative; }
         .hero-img { width: 100%; border-radius: var(--radius); transform: rotate(2deg); box-shadow: var(--shadow); border: 8px solid #fff; object-fit: cover; aspect-ratio: 3/4; }
+        
+        /* Statyczna strzałka "To ja" */
         .arrow-note { position: absolute; bottom: 425px; left: -50px; display: flex; flex-direction: column; align-items: center; z-index: 2; }
         .arrow-svg { width: 50px; height: auto; transform: rotate(-20deg); fill: var(--accent-navy); stroke: none; }
 
@@ -149,11 +162,12 @@
         .persona:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: var(--accent-yellow); }
         .persona svg { margin: 0 auto 20px auto; }
 
-        /* --- OFFER (NAVY BACKGROUND) --- */
+        /* --- OFERTA (NAVY + SUPER KARTY) --- */
         #oferta { background-color: var(--accent-navy); color: #fff; }
         .offer-header { text-align: center; margin-bottom: 40px; }
         .offer-header h2 { color: #fff; }
         
+        /* Toggle */
         .pricing-toggle { display: flex; align-items: center; justify-content: center; gap: 15px; margin-top: 20px; }
         .toggle-switch { position: relative; width: 50px; height: 26px; }
         .toggle-switch input { opacity: 0; width: 0; height: 0; }
@@ -164,25 +178,41 @@
         .toggle-label { font-weight: 700; font-size: 0.95rem; cursor: pointer; color: rgba(255,255,255,0.7); }
         .toggle-label.active { color: #fff; }
 
-        .offer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; align-items: center; }
+        /* Karty Organiczne */
+        .offer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; align-items: stretch; }
         .offer-card { 
-            background: #fff; padding: 40px; border-radius: 20px; 
+            background: #fff; padding: 40px 30px; 
+            border-radius: 20px 25px 22px 28px; /* Organiczny kształt */
             border: 2px solid transparent; transition: 0.3s; 
             position: relative; display: flex; flex-direction: column; text-align: center;
-            color: var(--text-main); /* Reset koloru tekstu wewnątrz karty */
+            color: var(--text-main); 
+            box-shadow: 0 10px 0px rgba(0,0,0,0.1); /* Twardy cień */
         }
-        .offer-card:hover { border-color: var(--accent-yellow); box-shadow: 0 10px 40px rgba(0,0,0,0.2); transform: translateY(-5px); }
-        .offer-card svg { margin: 0 auto 20px auto; }
-        .offer-card ul { text-align: left; padding-left: 20px; margin-top: 20px; list-style: none; }
-        .offer-card li { margin-bottom: 10px; font-size: 0.95rem; color: var(--text-light); }
+        .offer-card:hover { 
+            transform: translateY(-8px) rotate(1deg); 
+            box-shadow: 0 15px 0px var(--accent-yellow); 
+            border-color: var(--accent-yellow);
+        }
+        .offer-card svg { margin: 0 auto 15px auto; }
+        .offer-card h3 { font-size: 1.6rem; margin-bottom: 5px; }
+        .offer-card p { font-size: 0.95rem; opacity: 0.7; margin-bottom: 10px; }
         
-        /* POPRAWKA CENY (Lato) */
-        .price { 
-            font-family: 'Lato', sans-serif; /* Zmiana na prosty font */
-            font-size: 2.2rem; font-weight: 700; margin: 15px 0; color: var(--text-main); 
+        .card-divider { border: 0; border-top: 2px dashed #eee; width: 100%; margin: 20px 0; }
+        
+        .offer-card ul { text-align: left; padding-left: 10px; list-style: none; margin-bottom: 30px; flex-grow: 1; }
+        .offer-card li { margin-bottom: 12px; font-size: 0.95rem; color: var(--text-light); }
+        
+        /* Cena - Lato Font */
+        .price { font-family: 'Lato', sans-serif; font-size: 2.8rem; font-weight: 700; color: var(--accent-navy); line-height: 1; }
+        .price span { font-size: 0.8rem; font-weight: 700; color: #999; display: block; margin-top: 5px; text-transform: uppercase; letter-spacing: 1px; }
+        
+        .tag { 
+            position: absolute; top: -15px; right: 20px; 
+            background: var(--accent-yellow); color: var(--text-main); 
+            padding: 8px 18px; border-radius: 50px; font-weight: 800; font-size: 0.75rem; letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2); transform: rotate(3deg); z-index: 2;
         }
-        .price span { font-size: 1rem; font-weight: 400; color: var(--text-light); }
-        .tag { position: absolute; top: -12px; right: 20px; background: var(--accent-yellow); color: var(--text-main); padding: 5px 12px; border-radius: 12px; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; }
+        .offer-card .btn { width: 100%; margin-top: auto; }
 
         /* Testimonials */
         .reviews-section { text-align: center; position: relative; overflow: hidden; background: transparent; }
@@ -198,7 +228,7 @@
         .faq-item[open] summary::after { transform: rotate(45deg); color: var(--accent-yellow); }
         .faq-content { padding: 0 25px 25px; color: var(--text-light); }
 
-        /* 6. LEAD MAGNET */
+        /* Lead Magnet */
         .lead-magnet { background: var(--text-main); color: #fff; border-radius: 30px; padding: 50px; text-align: center; margin: 50px auto; position: relative; overflow: hidden; }
         .lead-magnet h3 { color: #fff; font-size: 2rem; margin-bottom: 15px; font-family: 'Lora', serif; }
         .lead-form { display: flex; gap: 10px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
@@ -206,17 +236,17 @@
         .lead-form button { background: var(--accent-yellow); border: none; padding: 12px 30px; border-radius: 50px; font-weight: 700; cursor: pointer; }
         .lead-form button:hover { background: #ffd633; }
 
-        /* KONTAKT - POPRAWKA TŁA (Granat) */
+        /* KONTAKT (Navy Background) */
         .contact-box { 
-            background: var(--accent-navy); /* Ciemny Granat */
-            color: #fff; 
-            border-radius: 30px; padding: 60px; text-align: center; position: relative; overflow: hidden;
+            background: var(--accent-navy); color: #fff; 
+            border-radius: 30px; padding: 60px; text-align: center; position: relative; overflow: hidden; 
         }
         .contact-box h2 { color: #fff; display: flex; align-items: center; justify-content: center; gap: 15px; }
         .contact-form { max-width: 500px; margin: 0 auto; text-align: left; }
         .input-field { width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 10px; border: none; font-family: inherit; font-size: 1rem; }
         .btn-submit { background: var(--accent-yellow); color: var(--text-main); width: 100%; border: none; }
         .btn-submit:hover { background: #ffdb4d; }
+        
         .contact-note { position: absolute; top: 40px; right: 40px; transform: rotate(15deg); display: none; animation: float 5s ease-in-out infinite reverse; }
         @media(min-width: 900px) { .contact-note { display: block; } }
 
@@ -369,45 +399,50 @@
             </div>
 
             <div class="offer-grid">
+                
                 <div class="offer-card">
                     <svg class="doodle-icon" viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><path d="M6 1v3"/><path d="M10 1v3"/><path d="M14 1v3"/></svg>
                     <h3>Na co dzień<br>(General)</h3>
-                    <p style="color:var(--text-light); margin-bottom: 20px;">Dla tych, którzy chcą swobodnie rozmawiać o życiu.</p>
-                    <div class="price"><span class="price-val" data-single="120" data-pack="1080">120</span> <span>zł / lekcja</span></div>
+                    <p>Dla tych, którzy chcą swobodnie rozmawiać o życiu.</p>
+                    <div class="price"><span class="price-val" data-single="120" data-pack="1080">120</span> <span>PLN / LEKCJA</span></div>
+                    <hr class="card-divider">
                     <ul>
                         <li>• Luźne konwersacje</li>
                         <li>• Ciekawe artykuły i wideo</li>
                         <li>• Poszerzanie słownictwa</li>
                     </ul>
-                    <a href="#kontakt" class="btn btn-primary" style="background: #fff; color: var(--text-main); border: 2px solid #eee; text-align:center;">Wybieram to</a>
+                    <a href="#kontakt" class="btn btn-primary" style="background: #fff; color: var(--text-main); border: 2px solid #eee;">Wybieram to</a>
                 </div>
 
-                <div class="offer-card" style="border-color: var(--accent-yellow);">
+                <div class="offer-card">
                     <div class="tag">POLECAM</div>
                     <svg class="doodle-icon" viewBox="0 0 24 24"><path d="M6 3h12v4c0 4-3 9-6 9s-6-5-6-9V3z"/><path d="M12 3v13"/><path d="M12 16l-4 6h8l-4-6"/></svg>
                     <h3>W pracy<br>(Business)</h3>
-                    <p style="color:var(--text-light); margin-bottom: 20px;">Dla HR, finansów, IT. Przygotowanie do spotkań.</p>
-                    <div class="price"><span class="price-val" data-single="150" data-pack="1350">150</span> <span>zł / lekcja</span></div>
+                    <p>Dla HR, finansów, IT. Przygotowanie do spotkań.</p>
+                    <div class="price"><span class="price-val" data-single="150" data-pack="1350">150</span> <span>PLN / LEKCJA</span></div>
+                    <hr class="card-divider">
                     <ul>
                         <li>• Symulacje rozmów</li>
                         <li>• Pisanie e-maili</li>
                         <li>• Słownictwo branżowe</li>
                     </ul>
-                    <a href="#kontakt" class="btn btn-warm" style="text-align:center;">To dla mnie!</a>
+                    <a href="#kontakt" class="btn btn-warm">To dla mnie!</a>
                 </div>
 
                 <div class="offer-card">
                     <svg class="doodle-icon" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-                    <h3>Egzaminy<br>(FCE, CAE, Matura)</h3>
-                    <p style="color:var(--text-light); margin-bottom: 20px;">Strategiczne przygotowanie do certyfikatów.</p>
-                    <div class="price"><span class="price-val" data-single="140" data-pack="1260">140</span> <span>zł / lekcja</span></div>
+                    <h3>Egzaminy<br>(FCE, CAE)</h3>
+                    <p>Strategiczne przygotowanie do certyfikatów.</p>
+                    <div class="price"><span class="price-val" data-single="140" data-pack="1260">140</span> <span>PLN / LEKCJA</span></div>
+                    <hr class="card-divider">
                     <ul>
                         <li>• Arkusze próbne</li>
                         <li>• Strategie egzaminacyjne</li>
-                        <li>• Korekta prac pisemnych</li>
+                        <li>• Korekta prac</li>
                     </ul>
-                    <a href="#kontakt" class="btn btn-primary" style="background: #fff; color: var(--text-main); border: 2px solid #eee; text-align:center;">Wybieram to</a>
+                    <a href="#kontakt" class="btn btn-primary" style="background: #fff; color: var(--text-main); border: 2px solid #eee;">Wybieram to</a>
                 </div>
+
             </div>
         </div>
         
@@ -474,7 +509,7 @@
     <div class="cookie-banner" id="cookieBanner"><span>Ta strona używa ciasteczek (cookies).</span><button class="cookie-btn" onclick="acceptCookies()">OK</button></div>
 
     <script>
-        // Progress, Sticky Nav, Back to Top
+        // Progress, Sticky, BackTop
         window.onscroll = function() {
             let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -502,11 +537,11 @@
             prices.forEach(p => {
                 if(toggle.checked) {
                     p.innerText = p.getAttribute('data-pack');
-                    p.nextElementSibling.innerText = " zł / pakiet";
+                    p.nextElementSibling.innerText = " PLN / PAKIET";
                     labelPack.classList.add('active'); labelSingle.classList.remove('active');
                 } else {
                     p.innerText = p.getAttribute('data-single');
-                    p.nextElementSibling.innerText = " zł / lekcja";
+                    p.nextElementSibling.innerText = " PLN / LEKCJA";
                     labelSingle.classList.add('active'); labelPack.classList.remove('active');
                 }
             });
@@ -516,7 +551,7 @@
         if (!localStorage.getItem('cookiesAccepted')) setTimeout(() => document.getElementById('cookieBanner').classList.add('show'), 1000);
         function acceptCookies() { document.getElementById('cookieBanner').classList.remove('show'); localStorage.setItem('cookiesAccepted', 'true'); }
 
-        // Animations (Observer)
+        // Observer
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
