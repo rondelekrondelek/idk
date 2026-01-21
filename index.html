@@ -22,7 +22,7 @@
     }
     </script>
 
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23ffc400%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><path d=%22M12 2L14 9L21 9L15 14L17 21L12 16L7 21L9 14L3 9L10 9L12 2Z%22/></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23ffc400%22 stroke-width=%221.5%22><path d=%22M12 3c.5 3.5 1.5 4.5 4.5 5-3 1-4 2-4.5 5.5-.5-3.5-1.5-4.5-4.5-5 3-1 4-2 4.5-5.5z%22/></svg>">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -61,13 +61,11 @@
             filter: drop-shadow(1px 1px 0px rgba(0,0,0,0.03));
         }
         .doodle-icon { width: 60px; height: 60px; margin-bottom: 20px; display: block; }
-        .doodle-small { width: 32px; height: 32px; display: inline-block; vertical-align: middle; }
+        .doodle-small { width: 32px; height: 32px; display: inline-block; vertical-align: middle; transform: translateY(-4px); }
 
         /* Animacja rysowania */
-        .doodle-icon path, .doodle-small path {
-            stroke-dasharray: 300; stroke-dashoffset: 300; transition: stroke-dashoffset 2s ease-out;
-        }
-        .active path { stroke-dashoffset: 0; }
+        .active path { stroke-dasharray: 600; stroke-dashoffset: 600; animation: draw 2s forwards ease-out; }
+        @keyframes draw { to { stroke-dashoffset: 0; } }
 
         /* Scrollbar & Progress */
         ::-webkit-scrollbar { width: 10px; }
@@ -101,11 +99,7 @@
         
         .btn-warm { background-color: var(--accent-yellow); color: var(--text-main); position: relative; overflow: hidden; }
         .btn-warm:hover { transform: translateY(-3px); background-color: #ffd633; }
-        .btn-warm::after {
-            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
-            background: linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent);
-            transform: skewX(-25deg); animation: shimmer 3s infinite;
-        }
+        .btn-warm::after { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent); transform: skewX(-25deg); animation: shimmer 3s infinite; }
         @keyframes shimmer { 100% { left: 150%; } }
 
         /* Navbar */
@@ -113,7 +107,6 @@
         nav.scrolled { background: rgba(253, 251, 247, 0.98); box-shadow: 0 5px 20px rgba(0,0,0,0.05); padding: 15px 0; }
         .nav-inner { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-family: 'Lora', serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.03em; }
-        
         .nav-links { display: flex; align-items: center; }
         .nav-links a { margin-left: 30px; font-size: 0.95rem; color: var(--text-main); font-weight: 500; }
         .mobile-toggle { display: none; background: none; border: none; cursor: pointer; z-index: 1001; }
@@ -121,15 +114,14 @@
 
         /* Hero */
         .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; padding-top: 20px; }
-        .hero-text p { font-size: 1.25rem; color: var(--text-light); margin-bottom: 35px; max-width: 500px; }
         .hero-img-box { position: relative; }
         .hero-img { width: 100%; border-radius: var(--radius); transform: rotate(2deg); box-shadow: var(--shadow); border: 8px solid #fff; object-fit: cover; aspect-ratio: 3/4; }
         .arrow-note { position: absolute; bottom: 425px; left: -50px; display: flex; flex-direction: column; align-items: center; z-index: 2; }
         .arrow-svg { width: 50px; height: auto; transform: rotate(-20deg); fill: var(--accent-navy); stroke: none; }
 
-        /* --- MINI KAFELKI (ABOUT SECTION) --- */
+        /* About & Filar Card */
         .about-box { background: var(--bg-white); padding: 60px; border-radius: 30px; box-shadow: var(--shadow); display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; margin-bottom: 60px; }
-        
+        .signature { font-family: 'Caveat', cursive; font-size: 2rem; color: var(--accent-navy); margin-top: 20px; font-weight: 400; }
         .about-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 25px; }
         .mini-tile { 
             background: #fff; padding: 20px; border-radius: 15px; border: 1px solid #eee; 
@@ -143,9 +135,8 @@
         .personas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px; }
         .persona { background: var(--bg-cream); padding: 35px; border-radius: 20px; border: 1px solid rgba(0,0,0,0.03); transition: 0.3s; text-align: center; }
         .persona:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: var(--accent-yellow); }
-        .persona svg { margin: 0 auto 20px auto; }
 
-        /* OFFER */
+        /* OFFER (NAVY) */
         #oferta { background-color: var(--accent-navy); color: #fff; }
         .offer-header { text-align: center; margin-bottom: 40px; }
         .pricing-toggle { display: flex; align-items: center; justify-content: center; gap: 15px; margin-top: 20px; }
@@ -159,12 +150,7 @@
         .toggle-label.active { color: #fff; }
 
         .offer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; align-items: stretch; }
-        .offer-card { 
-            background: #fff; padding: 40px 30px; border-radius: 20px 25px 22px 28px; 
-            border: 2px solid transparent; transition: 0.3s; position: relative; 
-            display: flex; flex-direction: column; text-align: center; color: var(--text-main); 
-            box-shadow: 0 10px 0px rgba(0,0,0,0.1); 
-        }
+        .offer-card { background: #fff; padding: 40px 30px; border-radius: 20px 25px 22px 28px; border: 2px solid transparent; transition: 0.3s; position: relative; display: flex; flex-direction: column; text-align: center; color: var(--text-main); box-shadow: 0 10px 0px rgba(0,0,0,0.1); }
         .offer-card:hover { transform: translateY(-8px) rotate(1deg); box-shadow: 0 15px 0px var(--accent-yellow); border-color: var(--accent-yellow); }
         .offer-card svg { margin: 0 auto 15px auto; }
         .card-divider { border: 0; border-top: 2px dashed #eee; width: 100%; margin: 20px 0; }
@@ -183,25 +169,19 @@
         .faq-item[open] summary::after { transform: rotate(45deg); color: var(--accent-yellow); }
         .faq-content { padding: 0 25px 25px; color: var(--text-light); }
 
-        /* Lead Magnet */
+        /* KONTAKT & Lead Magnet */
         .lead-magnet { background: var(--text-main); color: #fff; border-radius: 30px; padding: 50px; text-align: center; margin: 50px auto; position: relative; overflow: hidden; }
         .lead-magnet h3 { color: #fff; font-size: 2rem; margin-bottom: 15px; }
         .lead-form { display: flex; gap: 10px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
         .lead-form input { padding: 12px 20px; border-radius: 50px; border: none; width: 300px; }
         .lead-form button { background: var(--accent-yellow); border: none; padding: 12px 30px; border-radius: 50px; font-weight: 700; cursor: pointer; }
 
-        /* KONTAKT */
         .contact-box { background: var(--accent-navy); color: #fff; border-radius: 30px; padding: 60px; text-align: center; position: relative; }
         .contact-form { max-width: 500px; margin: 0 auto; text-align: left; }
         .input-field { width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 10px; border: none; font-family: inherit; font-size: 1rem; }
         .btn-submit { background: var(--accent-yellow); color: var(--text-main); width: 100%; border: none; }
-        .contact-note { position: absolute; top: 40px; right: 40px; transform: rotate(15deg); display: none; animation: float 5s ease-in-out infinite reverse; }
-        @media(min-width: 900px) { .contact-note { display: block; } }
 
-        /* Footer */
-        footer { text-align: center; padding: 50px 0; color: var(--text-light); font-size: 0.9rem; }
-
-        /* Floating Buttons */
+        /* Floating & Footer */
         .floating-btn { position: fixed; bottom: 30px; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 999; cursor: pointer; transition: 0.3s; }
         .whatsapp-btn { right: 30px; background-color: #25D366; }
         .back-to-top { left: 30px; background-color: var(--text-main); color: white; opacity: 0; pointer-events: auto; }
@@ -209,20 +189,17 @@
         .cookie-banner { position: fixed; bottom: 0; left: 0; width: 100%; background: var(--text-main); color: #fff; padding: 15px 20px; text-align: center; z-index: 2000; font-size: 0.9rem; display: flex; justify-content: center; align-items: center; gap: 20px; transform: translateY(100%); transition: transform 0.5s ease; }
         .cookie-banner.show { transform: translateY(0); }
         .cookie-btn { background: var(--accent-yellow); color: var(--text-main); border: none; padding: 8px 20px; border-radius: 50px; font-weight: 700; cursor: pointer; }
+        footer { text-align: center; padding: 50px 0; color: var(--text-light); font-size: 0.9rem; }
 
         @media(max-width: 900px) {
             .hero-grid, .about-box, .personas { grid-template-columns: 1fr; }
             .hero-grid { text-align: center; gap: 40px; }
-            .hero-img-box { margin: 0 auto; max-width: 350px; }
             .mobile-toggle { display: block; }
             .nav-links { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: var(--bg-cream); flex-direction: column; justify-content: center; gap: 30px; transform: translateX(100%); transition: transform 0.3s ease; }
             .nav-links.active { transform: translateX(0); }
             .nav-links a { font-size: 1.5rem; margin: 0; }
             .about-tiles { grid-template-columns: 1fr; }
         }
-        
-        .bg-cream { background-color: var(--bg-cream); position: relative; }
-        .bg-white { background-color: var(--bg-white); position: relative; }
     </style>
 </head>
 <body id="page-body">
@@ -247,7 +224,7 @@
             <div class="hero-text">
                 <span class="handwritten" style="margin-bottom: 10px; display:block;">Cześć! Tu Ewelina 👋</span>
                 <h1>Angielski<br><span class="marker">po ludzku.</span>
-                    <svg class="doodle-small" viewBox="0 0 24 24"><path d="M12 2L14 9L21 9L15 14L17 21L12 16L7 21L9 14L3 9L10 9L12 2Z" /></svg>
+                    <svg class="doodle-small" viewBox="0 0 24 24"><path d="M12 3c1 4 2 5 5 6-4 1-5 2-6 6-1-4-2-5-6-6 4-1 5-2 6-6z"/></svg>
                 </h1>
                 <p>Zapomnij o szkolnej ławce i stresie. Zapraszam Cię na lekcje, które są jak spotkanie przy kawie. Przełam barierę językową w swoim tempie.</p>
                 <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; md:justify-content: flex-start;">
@@ -274,28 +251,33 @@
                 <div class="signature">Do zobaczenia na lekcji, Ewelina</div>
             </div>
             <div style="background: #fdfbf7; padding: 35px; border-radius: 25px; border: 1px solid #eee;">
-                <h3 style="margin-bottom: 5px;">Jak uczę? 💡</h3>
-                
+                <h3 style="margin-bottom: 5px;">Moje podejście 💡</h3>
                 <div class="about-tiles">
                     <div class="mini-tile">
-                        <svg class="doodle-small" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                        <svg class="doodle-small" viewBox="0 0 512 512">
+                            <path d="M493.332,386.691c11.748-16.658,18.686-36.368,18.668-57.342c0.018-26.135-10.753-50.179-28.138-69.036c-17.411-18.91-41.393-33.001-68.928-40.504L407.7,246.41c22.994,6.247,42.461,17.95,55.86,32.562c13.436,14.665,20.85,31.862,20.868,50.377c-0.018,14.898-4.811,28.882-13.652,41.483c-8.831,12.565-21.792,23.613-37.722,31.772l-11.64,5.96l15.087,33.737c-45.719-7.962-88.134-22.806-109.585-31.162l-0.422-0.161l-0.431-0.135c-28.765-9.02-51.202-26.754-62.627-47.702l-24.179,13.265c15.473,28.11,43.547,49.453,77.679,60.429v0.009c26.531,10.277,82.274,29.824,140.837,36.376l23.945,2.657l-24.753-55.358C471.487,411.362,483.962,400.009,493.332,386.691z"/>
+                            <path d="M359.056,286.789c22.365-25.526,35.918-57.261,35.9-91.564c0.009-22.429-5.78-43.852-16.065-63.068c-15.446-28.855-40.819-52.809-72.214-69.593c-31.404-16.774-68.937-26.432-109.199-26.441c-53.67,0.018-102.513,17.143-138.44,45.53c-17.959,14.207-32.687,31.27-42.973,50.503C5.78,151.374-0.009,172.797,0,195.226c-0.018,28.621,9.433,55.52,25.57,78.415c13.795,19.61,32.472,36.367,54.488,49.48l-33.163,74.16l23.946-2.656c82.688-9.245,161.874-36.968,199.461-51.526C306.04,331.691,336.86,312.152,359.056,286.789z M260.743,317.233l-0.422,0.161c-32.534,12.656-98.366,35.641-168.309,46.536l23.703-53.007l-11.641-5.959c-23.487-12.026-42.73-28.379-55.96-47.191c-13.238-18.838-20.526-40.001-20.544-62.546c0.009-17.699,4.497-34.509,12.808-50.072c12.439-23.298,33.647-43.717,60.887-58.266c27.229-14.558,60.375-23.2,96.212-23.192c47.783-0.018,90.782,15.384,121.342,39.58c15.285,12.098,27.455,26.342,35.757,41.877c8.302,15.563,12.798,32.374,12.807,50.072c-0.017,26.979-10.473,52.082-29.079,73.415c-18.587,21.28-45.396,38.477-77.131,48.457L260.743,317.233z"/>
+                            <path d="M119.583,177.679c-11.838,0-21.441,9.603-21.441,21.45c0,11.838,9.603,21.442,21.441,21.442c11.848,0,21.451-9.603,21.451-21.442C141.034,187.283,131.431,177.679,119.583,177.679z"/>
+                            <path d="M202.298,177.679c-11.838,0-21.442,9.603-21.442,21.45c0,11.838,9.603,21.442,21.442,21.442c11.847,0,21.45-9.603,21.45-21.442C223.748,187.283,214.145,177.679,202.298,177.679z"/>
+                            <path d="M285.012,177.679c-11.838,0-21.442,9.603-21.442,21.45c0,11.838,9.603,21.442,21.442,21.442c11.847,0,21.45-9.603,21.45-21.442C306.462,187.283,296.859,177.679,285.012,177.679z"/>
+                        </svg>
                         <h4>Komunikacja</h4>
                         <p>➔ Mówimy od pierwszej minuty lekcji.</p>
                     </div>
                     <div class="mini-tile">
-                        <svg class="doodle-small" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20V5H6.5A2.5 2.5 0 0 0 4 7.5v12z"/></svg>
+                        <svg class="doodle-small" viewBox="0 0 24 24"><path d="M4 4h16v16H4z M4 9h16 M9 4v16"/></svg>
                         <h4>Materiały</h4>
                         <p>➔ Artykuły, wideo i podcasty.</p>
                     </div>
                     <div class="mini-tile">
-                        <svg class="doodle-small" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                        <svg class="doodle-small" viewBox="0 0 24 24"><path d="M12 21c-4-1-7-4-7-9 0-4 3-7 7-7s7 3 7 7c0 5-3 8-7 9z M12 7v5l3 2"/></svg>
                         <h4>Atmosfera</h4>
                         <p>➔ Bezpieczna przestrzeń bez ocen.</p>
                     </div>
                     <div class="mini-tile">
-                        <svg class="doodle-small" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <h4>Indywidualizm</h4>
-                        <p>➔ Cele dopasowane do Ciebie.</p>
+                        <svg class="doodle-small" viewBox="0 0 24 24"><path d="M5 3l14 9-14 9z"/></svg>
+                        <h4>Twój cel</h4>
+                        <p>➔ Plan dopasowany tylko do Ciebie.</p>
                     </div>
                 </div>
             </div>
@@ -310,19 +292,19 @@
             </div>
             <div class="personas">
                 <div class="persona">
-                    <svg class="doodle-icon" viewBox="0 0 24 24"><path d="M20 7h-3a2 2 0 0 0-2-2h-6a2 2 0 0 0-2 2H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 21V7a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v14"/><path d="M12 11v2"/></svg>
+                    <svg class="doodle-icon" viewBox="0 0 24 24"><path d="M4 8c0-1 1-2 2-2h12c1 0 2 1 2 2v10c0 1-1 2-2 2H6c-1 0-2-1-2-2V8z M9 6V4c0-1 1-1 3-1s3 0 3 1v2"/></svg>
                     <h3>Dla profesjonalistów</h3>
-                    <p>➔ Pomogę Ci zyskać <span class="marker">pewność siebie</span> na spotkaniach.</p>
+                    <p>➔ Zyskaj <span class="marker">pewność siebie</span> na callach i spotkaniach.</p>
                 </div>
                 <div class="persona">
-                    <svg class="doodle-icon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h.01"/><path d="M12 10h.01"/><path d="M16 10h.01"/></svg>
+                    <svg class="doodle-icon" viewBox="0 0 24 24"><path d="M3 6c0-2 2-3 4-3h10c2 0 4 1 4 3v8c0 2-2 3-4 3H9l-5 4v-4c-2 0-3-1-3-3V6z"/></svg>
                     <h3>Dla "zablokowanych"</h3>
-                    <p>➔ Stworzę dla Ciebie <span class="marker">bezpieczną przestrzeń</span> do rozmów.</p>
+                    <p>➔ Rozgadaj się w <span class="marker">bezpiecznej atmosferze</span> bez stresu.</p>
                 </div>
                 <div class="persona">
-                    <svg class="doodle-icon" viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2L15 22L11 13L2 9L22 2Z"/></svg>
+                    <svg class="doodle-icon" viewBox="0 0 24 24"><path d="M21 16l-8-5V4c0-1-1-1.5-2-1.5S9 3 9 4v7L1 16v2l8-2.5V20l-2 1.5V23l3-1 3 1v-1.5l-2-1.5v-4.5l8 2.5v-2z"/></svg>
                     <h3>Dla podróżników</h3>
-                    <p>➔ Nauczysz się swobodnie komunikować w każdej sytuacji.</p>
+                    <p>➔ Zamawiaj kawę i pytaj o drogę <span class="marker">bez bariery</span> w głowie.</p>
                 </div>
             </div>
         </div>
@@ -333,57 +315,39 @@
             <div class="offer-header">
                 <h2>Wybierz swoją ścieżkę</h2>
                 <div class="pricing-toggle">
-                    <span class="toggle-label active" id="label-single">Pojedyncza lekcja</span>
-                    <label class="toggle-switch">
-                        <input type="checkbox" id="priceToggle">
-                        <span class="slider"></span>
-                    </label>
-                    <span class="toggle-label" id="label-pack">Pakiet 10h (-10%)</span>
+                    <span class="toggle-label active" id="label-single">Lekcja</span>
+                    <label class="toggle-switch"><input type="checkbox" id="priceToggle"><span class="slider"></span></label>
+                    <span class="toggle-label" id="label-pack">Pakiet (-10%)</span>
                 </div>
             </div>
-
             <div class="offer-grid">
                 <div class="offer-card">
-                    <svg class="doodle-icon" viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><path d="M6 1v3"/><path d="M10 1v3"/><path d="M14 1v3"/></svg>
+                    <svg class="doodle-icon" viewBox="0 0 24 24"><path d="M17 9c2 0 3 1 3 4s-1 4-3 4 M2 9h16l-2 9c-1 2-3 3-5 3h-4c-2 0-4-1-5-3L2 9z M5 3v3 M9 3v3 M13 3v3"/></svg>
                     <h3>Na co dzień</h3>
-                    <p>Dla tych, którzy chcą swobodnie rozmawiać o życiu.</p>
-                    <div class="price"><span class="price-val" data-single="120" data-pack="1080">120</span> <span>PLN / LEKCJA</span></div>
+                    <p>Swobodne rozmowy o życiu i pasjach.</p>
+                    <div class="price"><span class="price-val" data-single="120" data-pack="1080">120</span> <span>PLN</span></div>
                     <hr class="card-divider">
-                    <ul>
-                        <li>➔ Luźne konwersacje</li>
-                        <li>➔ Ciekawe artykuły i wideo</li>
-                        <li>➔ Poszerzanie słownictwa</li>
-                    </ul>
-                    <a href="#kontakt" class="btn btn-primary" style="background: #fff; color: var(--text-main); border: 2px solid #eee;">Wybieram to</a>
+                    <ul><li>➔ Konwersacje</li><li>➔ Ciekawe wideo</li><li>➔ Nowe słownictwo</li></ul>
+                    <a href="#kontakt" class="btn btn-primary" style="background:#fff; color:var(--text-main); border:2px solid #eee;">Wybieram</a>
                 </div>
-
                 <div class="offer-card">
                     <div class="tag">POLECAM</div>
-                    <svg class="doodle-icon" viewBox="0 0 24 24"><path d="M6 3h12v4c0 4-3 9-6 9s-6-5-6-9V3z"/><path d="M12 3v13"/><path d="M12 16l-4 6h8l-4-6"/></svg>
+                    <svg class="doodle-icon" viewBox="0 0 24 24"><path d="M8 4h8l-1.5 5L16 20l-4 3-4-3 1.5-11L8 4z M8 4l4 2 4-2"/></svg>
                     <h3>W pracy</h3>
-                    <p>Dla HR, finansów, IT. Przygotowanie do spotkań.</p>
-                    <div class="price"><span class="price-val" data-single="150" data-pack="1350">150</span> <span>PLN / LEKCJA</span></div>
+                    <p>HR, IT, finanse. Przygotowanie do spotkań.</p>
+                    <div class="price"><span class="price-val" data-single="150" data-pack="1350">150</span> <span>PLN</span></div>
                     <hr class="card-divider">
-                    <ul>
-                        <li>➔ Symulacje rozmów</li>
-                        <li>➔ Pisanie e-maili</li>
-                        <li>➔ Słownictwo branżowe</li>
-                    </ul>
+                    <ul><li>➔ Symulacje rozmów</li><li>➔ E-maile</li><li>➔ Business English</li></ul>
                     <a href="#kontakt" class="btn btn-warm">To dla mnie!</a>
                 </div>
-
                 <div class="offer-card">
-                    <svg class="doodle-icon" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                    <svg class="doodle-icon" viewBox="0 0 24 24"><path d="M2 10l10-5 10 5-10 5-10-5z M6 12v5c2 2 10 2 12 0v-5"/></svg>
                     <h3>Egzaminy</h3>
-                    <p>Strategiczne przygotowanie do certyfikatów.</p>
-                    <div class="price"><span class="price-val" data-single="140" data-pack="1260">140</span> <span>PLN / LEKCJA</span></div>
+                    <p>Strategiczne przygotowanie (FCE, CAE).</p>
+                    <div class="price"><span class="price-val" data-single="140" data-pack="1260">140</span> <span>PLN</span></div>
                     <hr class="card-divider">
-                    <ul>
-                        <li>➔ Arkusze próbne</li>
-                        <li>➔ Strategie egzaminacyjne</li>
-                        <li>➔ Korekta prac</li>
-                    </ul>
-                    <a href="#kontakt" class="btn btn-primary" style="background: #fff; color: var(--text-main); border: 2px solid #eee;">Wybieram to</a>
+                    <ul><li>➔ Arkusze próbne</li><li>➔ Strategie</li><li>➔ Korekta prac</li></ul>
+                    <a href="#kontakt" class="btn btn-primary" style="background:#fff; color:var(--text-main); border:2px solid #eee;">Wybieram</a>
                 </div>
             </div>
         </div>
@@ -398,12 +362,15 @@
         </div>
     </section>
 
-    <section class="bg-white section-padding">
-        <div class="container" style="max-width: 700px;">
-            <h2 style="text-align: center; margin-bottom: 40px;">Pytania? Tutaj znajdziesz odpowiedzi.</h2>
-            <details class="faq-item"><summary>Jak wyglądają zajęcia?</summary><div class="faq-content">Spotykamy się online (Google Meet). Rozmawiamy, korzystamy z interaktywnej tablicy i moich autorskich materiałów. Jest luźno, ale produktywnie.</div></details>
-            <details class="faq-item"><summary>Co jeśli muszę odwołać lekcję?</summary><div class="faq-content">Życie pisze różne scenariusze. Możesz odwołać lub przełożyć lekcję bezpłatnie do 24h przed terminem.</div></details>
-            <details class="faq-item"><summary>Jak mogę zapłacić?</summary><div class="faq-content">Przyjmuję płatności przelewem lub BLIKiem. Zazwyczaj rozliczamy się za pakiet lekcji z góry. Wystawiam faktury.</div></details>
+    <section id="kontakt" class="bg-white section-padding">
+        <div class="container contact-box">
+            <h2>Napisz do mnie <svg class="doodle-small" viewBox="0 0 24 24" style="stroke:#fff; margin-left:10px;"><path d="M3 6l9 7 9-7 M3 6h18v12H3z"/></svg></h2>
+            <form action="https://formspree.io/f/TWOJ_KOD" method="POST" class="contact-form">
+                <input type="text" name="name" class="input-field" placeholder="Imię" required>
+                <input type="email" name="email" class="input-field" placeholder="E-mail" required>
+                <textarea name="message" rows="4" class="input-field" placeholder="W czym mogę pomóc?" required></textarea>
+                <button type="submit" class="btn btn-submit">Wyślij wiadomość</button>
+            </form>
         </div>
         
         <div class="container lead-magnet">
@@ -416,32 +383,10 @@
         </div>
     </section>
 
-    <section id="kontakt" class="bg-white section-padding" style="padding-top: 50px;">
-        <div class="container contact-box">
-            <span class="handwritten contact-note" style="color: #ffd633;">Czekam na wiadomość!</span>
-            <h2>Napisz do mnie <svg class="doodle-small" viewBox="0 0 24 24" style="stroke:#fff; margin-left:15px; transform: rotate(10deg);"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg></h2>
-            <p style="opacity: 0.9; margin-bottom: 40px;">Masz pytania? Chcesz sprawdzić, czy nadajemy na tych samych falach? Umów się na krótką rozmowę.</p>
-            <form action="https://formspree.io/f/TWOJ_KOD" method="POST" class="contact-form">
-                <input type="text" name="name" class="input-field" placeholder="Jak masz na imię?" required>
-                <input type="email" name="email" class="input-field" placeholder="Twój e-mail" required>
-                <textarea name="message" rows="4" class="input-field" placeholder="O co chcesz zapytać? (np. poziom, terminy)" required></textarea>
-                <div style="text-align: left; font-size: 0.85rem; margin-bottom: 20px; opacity: 0.8;"><input type="checkbox" required> Akceptuję politykę prywatności.</div>
-                <button type="submit" class="btn btn-submit">Wyślij wiadomość</button>
-            </form>
-            <div style="margin-top: 40px; font-size: 0.9rem;">Lub napisz bezpośrednio: <strong>kontakt@ewelina-nowak.pl</strong></div>
-        </div>
-    </section>
+    <footer>&copy; 2024 Ewelina Nowak. Po ludzku i bez stresu.</footer>
 
-    <footer class="bg-white">
-        <div class="container">
-            &copy; 2024 Ewelina Nowak. Strona stworzona z myślą o ludziach.<br>
-            <a href="#" style="text-decoration: underline; margin-top: 10px; display: inline-block;">Polityka Prywatności</a>
-        </div>
-    </footer>
-
-    <a href="https://wa.me/48000000000" class="floating-btn whatsapp-btn" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="30"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.592 2.654-.696c1.062.579 2.261 1.17 3.255 1.169 3.179 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-6.217-5.77zm0 10.426c-.937 0-1.857-.253-2.658-.727l-.19-.112-1.97.517.528-1.919-.123-.197c-.551-.876-.842-1.895-.841-2.922.001-2.55 2.074-4.623 4.624-4.623 2.551.001 4.625 2.075 4.625 4.624 0 2.552-2.074 4.626-4.635 4.626z"/></svg></a>
+    <a href="https://wa.me/48000000000" class="floating-btn whatsapp-btn" target="_blank"><svg viewBox="0 0 24 24" fill="white" width="30"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.592 2.654-.696c1.062.579 2.261 1.17 3.255 1.169 3.179 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-6.217-5.77zm0 10.426c-.937 0-1.857-.253-2.658-.727l-.19-.112-1.97.517.528-1.919-.123-.197c-.551-.876-.842-1.895-.841-2.922.001-2.55 2.074-4.623 4.624-4.623 2.551.001 4.625 2.075 4.625 4.624 0 2.552-2.074 4.626-4.635 4.626z"/></svg></a>
     <a href="#navbar" class="floating-btn back-to-top" id="backToTop">↑</a>
-    <div class="cookie-banner" id="cookieBanner"><span>Ta strona używa ciasteczek (cookies).</span><button class="cookie-btn" onclick="acceptCookies()">OK</button></div>
 
     <script>
         window.onscroll = function() {
@@ -449,39 +394,21 @@
             let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             let scrolled = (winScroll / height) * 100;
             document.getElementById("scrollProgress").style.width = scrolled + "%";
-            
             const nav = document.getElementById('navbar');
             if (winScroll > 10) nav.classList.add('scrolled'); else nav.classList.remove('scrolled');
             const backBtn = document.getElementById('backToTop');
             if (winScroll > 300) backBtn.classList.add('visible'); else backBtn.classList.remove('visible');
         };
-
         const mobileBtn = document.querySelector('.mobile-toggle');
         const navLinks = document.querySelector('.nav-links');
         mobileBtn.addEventListener('click', () => navLinks.classList.toggle('active'));
-        document.querySelectorAll('.nav-links a').forEach(l => l.addEventListener('click', () => navLinks.classList.remove('active')));
-
         const toggle = document.getElementById('priceToggle');
         const prices = document.querySelectorAll('.price-val');
-        const labelSingle = document.getElementById('label-single');
-        const labelPack = document.getElementById('label-pack');
         toggle.addEventListener('change', () => {
             prices.forEach(p => {
-                if(toggle.checked) {
-                    p.innerText = p.getAttribute('data-pack');
-                    p.nextElementSibling.innerText = " PLN / PAKIET";
-                    labelPack.classList.add('active'); labelSingle.classList.remove('active');
-                } else {
-                    p.innerText = p.getAttribute('data-single');
-                    p.nextElementSibling.innerText = " PLN / LEKCJA";
-                    labelSingle.classList.add('active'); labelPack.classList.remove('active');
-                }
+                p.innerText = toggle.checked ? p.getAttribute('data-pack') : p.getAttribute('data-single');
             });
         });
-
-        if (!localStorage.getItem('cookiesAccepted')) setTimeout(() => document.getElementById('cookieBanner').classList.add('show'), 1000);
-        function acceptCookies() { document.getElementById('cookieBanner').classList.remove('show'); localStorage.setItem('cookiesAccepted', 'true'); }
-
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -490,8 +417,9 @@
                 }
             });
         }, { threshold: 0.5 });
-
         document.querySelectorAll('.doodle-icon, .doodle-small, .marker').forEach(el => observer.observe(el));
+        if (!localStorage.getItem('cookiesAccepted')) setTimeout(() => document.getElementById('cookieBanner').classList.add('show'), 1000);
+        function acceptCookies() { document.getElementById('cookieBanner').classList.remove('show'); localStorage.setItem('cookiesAccepted', 'true'); }
     </script>
 
 </body>
