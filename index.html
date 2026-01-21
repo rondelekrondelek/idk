@@ -265,6 +265,12 @@
         .cookie-banner.show { transform: translateY(0); }
         .cookie-btn { background: var(--accent-yellow); color: var(--text-main); border: none; padding: 8px 20px; border-radius: 50px; font-weight: 700; cursor: pointer; }
 
+
+        /* LOGO HANDWRITTEN */
+        .logo-handwritten { font-family: 'Caveat', cursive; font-size: 2.2rem; color: var(--accent-navy); text-decoration: none; transition: 0.3s; display: inline-block; transform: rotate(-2deg); }
+        .logo-handwritten:hover { color: var(--accent-yellow); transform: rotate(0deg) scale(1.05); }
+
+
         @media(max-width: 900px) {
             .hero-grid, .about-box, .personas { grid-template-columns: 1fr; }
             .hero-grid { text-align: center; gap: 40px; }
@@ -284,7 +290,7 @@
 
     <nav id="navbar">
         <div class="container nav-inner">
-            <a href="#" class="logo handwritten">Ewelina Nowak</a>
+            <a href="#" class="logo-handwritten">Ewelina Nowak</a>
             <button class="mobile-toggle" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 12h18M3 6h18M3 18h18" /></svg></button>
             <div class="nav-links">
                 <a href="#o-mnie">Poznajmy się</a>
