@@ -22,21 +22,20 @@
     }
     </script>
 
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23ffc400%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><path d=%22M12 2L14 9L21 9L15 14L17 21L12 16L7 21L9 14L3 9L10 9L12 2Z%22/></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23ffc400%22 stroke-width=%221.5%22><path d=%22M12 3c.5 3.5 1.5 4.5 4.5 5-3 1-4 2-4.5 5.5-.5-3.5-1.5-4.5-4.5-5 3-1 4-2 4.5-5.5z%22/></svg>">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Lato:wght@300;400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
     <style>
-        /* --- PALETA --- */
         :root {
             --bg-cream: #fdfbf7;
             --bg-white: #ffffff;
             --text-main: #2d2420;
             --text-light: #5e504a;
             --accent-yellow: #ffc400;
-            --accent-navy: #1e3a8a; /* Royal Navy */
+            --accent-navy: #1e3a8a;
             --radius: 20px;
             --shadow: 0 10px 40px -5px rgba(30, 58, 138, 0.06);
         }
@@ -51,39 +50,23 @@
             line-height: 1.7;
             font-size: 18px;
             overflow-x: hidden;
-            transition: background-color 0.5s ease;
         }
 
-        /* --- DOODLES (Ultra Cienka Linia 0.8px) --- */
         .doodle-icon, .doodle-small {
             fill: none; stroke: var(--accent-navy); stroke-width: 0.8px;
             stroke-linecap: round; stroke-linejoin: round;
             filter: drop-shadow(1px 1px 0px rgba(0,0,0,0.03));
+            display: block;
+            margin: 0 auto 20px auto;
         }
-        
-        /* POPRAWKA: Wyśrodkowanie ikon doodle-icon */
-        .doodle-icon { 
-            width: 60px; 
-            height: 60px; 
-            margin: 0 auto 20px auto; 
-            display: block; 
-        }
-        
-        .doodle-small { width: 32px; height: 32px; display: inline-block; vertical-align: middle; }
+        .doodle-icon { width: 64px; height: 64px; }
+        .doodle-small { width: 32px; height: 32px; display: inline-block; vertical-align: middle; transform: translateY(-4px); margin: 0 5px; }
 
-        /* Animacja rysowania */
-        .doodle-icon path, .doodle-small path {
-            stroke-dasharray: 300; stroke-dashoffset: 300; transition: stroke-dashoffset 2s ease-out;
-        }
-        .active path { stroke-dashoffset: 0; }
+        .active path { stroke-dasharray: 600; stroke-dashoffset: 600; animation: draw 2s forwards ease-out; }
+        @keyframes draw { to { stroke-dashoffset: 0; } }
 
-        /* Scrollbar & Progress */
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: var(--bg-cream); }
-        ::-webkit-scrollbar-thumb { background-color: var(--accent-yellow); border-radius: 5px; border: 2px solid var(--bg-cream); }
-        .scroll-progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--accent-yellow); width: 0%; z-index: 1001; transition: width 0.1s; }
+        .scroll-progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--accent-yellow); width: 0%; z-index: 1001; }
 
-        /* Typography */
         h1, h2, h3 { font-family: 'Lora', serif; font-weight: 700; line-height: 1.2; margin-bottom: 20px; letter-spacing: -0.03em; }
         h1 { font-size: 3.5rem; }
         h2 { font-size: 2.6rem; }
@@ -102,58 +85,41 @@
         .section-padding { padding: 100px 0; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
 
-        /* Buttons */
         .btn { display: inline-block; padding: 14px 32px; border-radius: 50px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: 0.3s; border: 2px solid transparent; text-align: center; }
         .btn-primary { background-color: var(--text-main); color: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
         .btn-primary:hover { transform: translateY(-3px); background-color: var(--accent-navy); }
-        
         .btn-warm { background-color: var(--accent-yellow); color: var(--text-main); position: relative; overflow: hidden; }
         .btn-warm:hover { transform: translateY(-3px); background-color: #ffd633; }
-        .btn-warm::after {
-            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
-            background: linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent);
-            transform: skewX(-25deg); animation: shimmer 3s infinite;
-        }
+        .btn-warm::after { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent); transform: skewX(-25deg); animation: shimmer 3s infinite; }
         @keyframes shimmer { 100% { left: 150%; } }
 
-        /* Navbar */
         nav { padding: 20px 0; position: sticky; top: 0; z-index: 1000; background: transparent; transition: all 0.3s ease; }
         nav.scrolled { background: rgba(253, 251, 247, 0.98); box-shadow: 0 5px 20px rgba(0,0,0,0.05); padding: 15px 0; }
         .nav-inner { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-family: 'Lora', serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.03em; }
-        
         .nav-links { display: flex; align-items: center; }
         .nav-links a { margin-left: 30px; font-size: 0.95rem; color: var(--text-main); font-weight: 500; }
         .mobile-toggle { display: none; background: none; border: none; cursor: pointer; z-index: 1001; }
         .mobile-toggle svg { width: 30px; height: 30px; stroke: var(--text-main); stroke-width: 2; }
 
-        /* Hero */
         .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; padding-top: 20px; }
-        .hero-text p { font-size: 1.25rem; color: var(--text-light); margin-bottom: 35px; max-width: 500px; }
         .hero-img-box { position: relative; }
         .hero-img { width: 100%; border-radius: var(--radius); transform: rotate(2deg); box-shadow: var(--shadow); border: 8px solid #fff; object-fit: cover; aspect-ratio: 3/4; }
         .arrow-note { position: absolute; bottom: 425px; left: -50px; display: flex; flex-direction: column; align-items: center; z-index: 2; }
         .arrow-svg { width: 50px; height: auto; transform: rotate(-20deg); fill: var(--accent-navy); stroke: none; }
 
-        /* --- MINI KAFELKI (ABOUT SECTION) --- */
         .about-box { background: var(--bg-white); padding: 60px; border-radius: 30px; box-shadow: var(--shadow); display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; margin-bottom: 60px; }
-        
         .about-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 25px; }
-        .mini-tile { 
-            background: #fff; padding: 20px; border-radius: 15px; border: 1px solid #eee; 
-            text-align: left; transition: 0.3s; display: flex; flex-direction: column; gap: 8px;
-        }
+        .mini-tile { background: #fff; padding: 20px; border-radius: 15px; border: 1px solid #eee; text-align: left; transition: 0.3s; display: flex; flex-direction: column; gap: 8px; }
         .mini-tile:hover { transform: translateY(-5px); border-color: var(--accent-yellow); box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
         .mini-tile h4 { font-size: 0.95rem; font-weight: 700; color: var(--accent-navy); margin: 0; }
         .mini-tile p { font-size: 0.8rem; line-height: 1.4; margin: 0; color: var(--text-light); }
+        .mini-tile .doodle-small { margin: 0 0 5px 0; display: block; }
 
-        /* Personas */
         .personas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px; }
         .persona { background: var(--bg-cream); padding: 35px; border-radius: 20px; border: 1px solid rgba(0,0,0,0.03); transition: 0.3s; text-align: center; }
         .persona:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: var(--accent-yellow); }
-        .persona svg { margin: 0 auto 20px auto; }
 
-        /* OFFER */
         #oferta { background-color: var(--accent-navy); color: #fff; }
         .offer-header { text-align: center; margin-bottom: 40px; }
         .pricing-toggle { display: flex; align-items: center; justify-content: center; gap: 15px; margin-top: 20px; }
@@ -167,23 +133,15 @@
         .toggle-label.active { color: #fff; }
 
         .offer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; align-items: stretch; }
-        .offer-card { 
-            background: #fff; padding: 40px 30px; border-radius: 20px 25px 22px 28px; 
-            border: 2px solid transparent; transition: 0.3s; position: relative; 
-            display: flex; flex-direction: column; text-align: center; color: var(--text-main); 
-            box-shadow: 0 10px 0px rgba(0,0,0,0.1); 
-        }
+        .offer-card { background: #fff; padding: 40px 30px; border-radius: 20px 25px 22px 28px; border: 2px solid transparent; transition: 0.3s; position: relative; display: flex; flex-direction: column; text-align: center; color: var(--text-main); box-shadow: 0 10px 0px rgba(0,0,0,0.1); }
         .offer-card:hover { transform: translateY(-8px) rotate(1deg); box-shadow: 0 15px 0px var(--accent-yellow); border-color: var(--accent-yellow); }
-        .offer-card svg { margin: 0 auto 15px auto; }
         .card-divider { border: 0; border-top: 2px dashed #eee; width: 100%; margin: 20px 0; }
         .offer-card ul { text-align: left; padding-left: 10px; list-style: none; margin-bottom: 30px; flex-grow: 1; }
         .offer-card li { margin-bottom: 12px; font-size: 0.95rem; color: var(--text-light); }
         .price { font-family: 'Lato', sans-serif; font-size: 2.8rem; font-weight: 700; color: var(--accent-navy); line-height: 1; }
         .price span { font-size: 0.8rem; font-weight: 700; color: #999; display: block; margin-top: 5px; text-transform: uppercase; letter-spacing: 1px; }
         .tag { position: absolute; top: -15px; right: 20px; background: var(--accent-yellow); color: var(--text-main); padding: 8px 18px; border-radius: 50px; font-weight: 800; font-size: 0.75rem; letter-spacing: 1px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); transform: rotate(3deg); z-index: 2; }
-        .offer-card .btn { width: 100%; margin-top: auto; }
 
-        /* FAQ */
         .faq-item { background: #fff; border-radius: 15px; margin-bottom: 15px; border: 1px solid rgba(0,0,0,0.05); overflow: hidden; transition: all 0.3s; }
         .faq-item[open] { border-color: var(--accent-yellow); box-shadow: var(--shadow); }
         .faq-item summary { padding: 20px 25px; cursor: pointer; font-weight: 700; display: flex; justify-content: space-between; align-items: center; list-style: none; }
@@ -191,25 +149,17 @@
         .faq-item[open] summary::after { transform: rotate(45deg); color: var(--accent-yellow); }
         .faq-content { padding: 0 25px 25px; color: var(--text-light); }
 
-        /* Lead Magnet */
         .lead-magnet { background: var(--text-main); color: #fff; border-radius: 30px; padding: 50px; text-align: center; margin: 50px auto; position: relative; overflow: hidden; }
         .lead-magnet h3 { color: #fff; font-size: 2rem; margin-bottom: 15px; }
         .lead-form { display: flex; gap: 10px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
         .lead-form input { padding: 12px 20px; border-radius: 50px; border: none; width: 300px; }
         .lead-form button { background: var(--accent-yellow); border: none; padding: 12px 30px; border-radius: 50px; font-weight: 700; cursor: pointer; }
 
-        /* KONTAKT */
         .contact-box { background: var(--accent-navy); color: #fff; border-radius: 30px; padding: 60px; text-align: center; position: relative; }
         .contact-form { max-width: 500px; margin: 0 auto; text-align: left; }
         .input-field { width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 10px; border: none; font-family: inherit; font-size: 1rem; }
         .btn-submit { background: var(--accent-yellow); color: var(--text-main); width: 100%; border: none; }
-        .contact-note { position: absolute; top: 40px; right: 40px; transform: rotate(15deg); display: none; animation: float 5s ease-in-out infinite reverse; }
-        @media(min-width: 900px) { .contact-note { display: block; } }
 
-        /* Footer */
-        footer { text-align: center; padding: 50px 0; color: var(--text-light); font-size: 0.9rem; }
-
-        /* Floating Buttons */
         .floating-btn { position: fixed; bottom: 30px; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 999; cursor: pointer; transition: 0.3s; }
         .whatsapp-btn { right: 30px; background-color: #25D366; }
         .back-to-top { left: 30px; background-color: var(--text-main); color: white; opacity: 0; pointer-events: auto; }
@@ -217,20 +167,17 @@
         .cookie-banner { position: fixed; bottom: 0; left: 0; width: 100%; background: var(--text-main); color: #fff; padding: 15px 20px; text-align: center; z-index: 2000; font-size: 0.9rem; display: flex; justify-content: center; align-items: center; gap: 20px; transform: translateY(100%); transition: transform 0.5s ease; }
         .cookie-banner.show { transform: translateY(0); }
         .cookie-btn { background: var(--accent-yellow); color: var(--text-main); border: none; padding: 8px 20px; border-radius: 50px; font-weight: 700; cursor: pointer; }
+        footer { text-align: center; padding: 50px 0; color: var(--text-light); font-size: 0.9rem; }
 
         @media(max-width: 900px) {
             .hero-grid, .about-box, .personas { grid-template-columns: 1fr; }
             .hero-grid { text-align: center; gap: 40px; }
-            .hero-img-box { margin: 0 auto; max-width: 350px; }
             .mobile-toggle { display: block; }
             .nav-links { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: var(--bg-cream); flex-direction: column; justify-content: center; gap: 30px; transform: translateX(100%); transition: transform 0.3s ease; }
             .nav-links.active { transform: translateX(0); }
             .nav-links a { font-size: 1.5rem; margin: 0; }
             .about-tiles { grid-template-columns: 1fr; }
         }
-        
-        .bg-cream { background-color: var(--bg-cream); position: relative; }
-        .bg-white { background-color: var(--bg-white); position: relative; }
     </style>
 </head>
 <body id="page-body">
@@ -255,7 +202,7 @@
             <div class="hero-text">
                 <span class="handwritten" style="margin-bottom: 10px; display:block;">Cześć! Tu Ewelina 👋</span>
                 <h1>Angielski<br><span class="marker">po ludzku.</span>
-                    <svg class="doodle-small" viewBox="0 0 24 24"><path d="M12 2L14 9L21 9L15 14L17 21L12 16L7 21L9 14L3 9L10 9L12 2Z" /></svg>
+                    <svg class="doodle-small" viewBox="0 0 24 24"><path d="M12 3c1 4 2 5 5 6-4 1-5 2-6 6-1-4-2-5-6-6 4-1 5-2 6-6z"/></svg>
                 </h1>
                 <p>Zapomnij o szkolnej ławce i stresie. Zapraszam Cię na lekcje, które są jak spotkanie przy kawie. Przełam barierę językową w swoim tempie.</p>
                 <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; md:justify-content: flex-start;">
@@ -279,19 +226,14 @@
                 <h2>Nie jestem typową "panią od angielskiego".</h2>
                 <p>Wierzę, że język to narzędzie do komunikacji, a nie zestaw regułek do wykucia. Uczę dorosłych, którzy chcą czuć się <span class="marker">swobodnie</span> w podróży i w pracy.</p>
                 <p>Na moich zajęciach nie ma oceniania. Jest za to dużo śmiechu, ciekawe tematy i atmosfera, w której nie boisz się <span class="marker">popełniać błędów</span>.</p>
-                <div class="signature">Do zobaczenia na lekcji, Ewelina</div>
+                <div class="signature" style="font-family: 'Caveat', cursive; font-size: 2rem; color: var(--accent-navy); margin-top: 20px; font-weight: 400;">Do zobaczenia na lekcji, Ewelina</div>
             </div>
             <div style="background: #fdfbf7; padding: 35px; border-radius: 25px; border: 1px solid #eee;">
-                <h3 style="margin-bottom: 5px;">Jak uczę? 💡</h3>
-                
+                <h3 style="margin-bottom: 5px;">Moje podejście 💡</h3>
                 <div class="about-tiles">
                     <div class="mini-tile">
-                        <svg class="doodle-small" viewBox="0 0 512 512">
-                            <path d="M493.332,386.691c11.748-16.658,18.686-36.368,18.668-57.342c0.018-26.135-10.753-50.179-28.138-69.036c-17.411-18.91-41.393-33.001-68.928-40.504L407.7,246.41c22.994,6.247,42.461,17.95,55.86,32.562c13.436,14.665,20.85,31.862,20.868,50.377c-0.018,14.898-4.811,28.882-13.652,41.483c-8.831,12.565-21.792,23.613-37.722,31.772l-11.64,5.96l15.087,33.737c-45.719-7.962-88.134-22.806-109.585-31.162l-0.422-0.161l-0.431-0.135c-28.765-9.02-51.202-26.754-62.627-47.702l-24.179,13.265c15.473,28.11,43.547,49.453,77.679,60.429v0.009c26.531,10.277,82.274,29.824,140.837,36.376l23.945,2.657l-24.753-55.358C471.487,411.362,483.962,400.009,493.332,386.691z"/>
-                            <path d="M359.056,286.789c22.365-25.526,35.918-57.261,35.9-91.564c0.009-22.429-5.78-43.852-16.065-63.068c-15.446-28.855-40.819-52.809-72.214-69.593c-31.404-16.774-68.937-26.432-109.199-26.441c-53.67,0.018-102.513,17.143-138.44,45.53c-17.959,14.207-32.687,31.27-42.973,50.503C5.78,151.374-0.009,172.797,0,195.226c-0.018,28.621,9.433,55.52,25.57,78.415c13.795,19.61,32.472,36.367,54.488,49.48l-33.163,74.16l23.946-2.656c82.688-9.245,161.874-36.968,199.461-51.526C306.04,331.691,336.86,312.152,359.056,286.789z M260.743,317.233l-0.422,0.161c-32.534,12.656-98.366,35.641-168.309,46.536l23.703-53.007l-11.641-5.959c-23.487-12.026-42.73-28.379-55.96-47.191c-13.238-18.838-20.526-40.001-20.544-62.546c0.009-17.699,4.497-34.509,12.808-50.072c12.439-23.298,33.647-43.717,60.887-58.266c27.229-14.558,60.375-23.2,96.212-23.192c47.783-0.018,90.782,15.384,121.342,39.58c15.285,12.098,27.455,26.342,35.757,41.877c8.302,15.563,12.798,32.374,12.807,50.072c-0.017,26.979-10.473,52.082-29.079,73.415c-18.587,21.28-45.396,38.477-77.131,48.457L260.743,317.233z"/>
-                            <path d="M119.583,177.679c-11.838,0-21.441,9.603-21.441,21.45c0,11.838,9.603,21.442,21.441,21.442c11.848,0,21.451-9.603,21.451-21.442C141.034,187.283,131.431,177.679,119.583,177.679z"/>
-                            <path d="M202.298,177.679c-11.838,0-21.442,9.603-21.442,21.45c0,11.838,9.603,21.442,21.442,21.442c11.847,0,21.45-9.603,21.45-21.442C223.748,187.283,214.145,177.679,202.298,177.679z"/>
-                            <path d="M285.012,177.679c-11.838,0-21.442,9.603-21.442,21.45c0,11.838,9.603,21.442,21.442,21.442c11.847,0,21.45-9.603,21.45-21.442C306.462,187.283,296.859,177.679,285.012,177.679z"/>
+                        <svg class="doodle-small" viewBox="0 0 24 24">
+                            <path d="M7 8c-2 0-4 1.5-4 3.5s2 3.5 4 3.5h1l.5 2 2.5-2h2c2 0 4-1.5 4-3.5S15 8 13 8H7z M14 5c2.5 0 4.5 1.8 4.5 4s-2 4-4.5 4h-.5l-.3 1.5-1.7-1.5h-1c-1 0-2-.3-2.8-.8"/>
                         </svg>
                         <h4>Komunikacja</h4>
                         <p>➔ Mówimy od pierwszej minuty lekcji.</p>
@@ -325,15 +267,17 @@
             <div class="personas">
                 <div class="persona">
                     <svg class="doodle-icon" viewBox="0 0 24 24">
-                        <path d="M20 16V6c0-1.1-.9-2-2-2H6c-1.1 0-2 .9-2 2v10m-2 4h20c-1-2-2-2-2-2H4s-1 0-2 2z M7 12h3M14 12h3"/>
+                        <path d="M12 4c-4.4 0-8 3.6-8 8v3c0 .6.4 1 1 1h2c.6 0 1-.4 1-1v-4c0-.6-.4-1-1-1H5.1c.4-2.8 2.8-5 5.7-5.1"/>
+                        <path d="M18.9 11c-.6 0-1 .4-1 1v4c0 .6.4 1 1 1h1c.6 0 1-.4 1-1v-3c0-4.4-3.6-8-8-8"/>
+                        <path d="M19 17v1.5c0 1.4-1.1 2.5-2.5 2.5H15M7 16v.5"/>
                     </svg>
                     <h3>Dla profesjonalistów</h3>
-                    <p>➔ Pomogę Ci zyskać <span class="marker">pewność siebie</span> na callach i spotkaniach.</p>
+                    <p>➔ Pomogę Ci zyskać <span class="marker">pewność siebie</span> na spotkaniach.</p>
                 </div>
                 <div class="persona">
                     <svg class="doodle-icon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
                     <h3>Dla "zablokowanych"</h3>
-                    <p>➔ Rozgadaj się w <span class="marker">bezpiecznej atmosferze</span> bez stresu.</p>
+                    <p>➔ Stworzę dla Ciebie <span class="marker">bezpieczną przestrzeń</span> do rozmów.</p>
                 </div>
                 <div class="persona">
                     <svg class="doodle-icon" viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2L15 22L11 13L2 9L22 2Z"/></svg>
@@ -367,7 +311,7 @@
                 <div class="offer-card">
                     <div class="tag">POLECAM</div>
                     <svg class="doodle-icon" viewBox="0 0 24 24">
-                        <path d="M20 16V6c0-1.1-.9-2-2-2H6c-1.1 0-2 .9-2 2v10m-2 4h20c-1-2-2-2-2-2H4s-1 0-2 2z M7 12h3M14 12h3"/>
+                        <path d="M12 4c-4.4 0-8 3.6-8 8v3c0 .6.4 1 1 1h2c.6 0 1-.4 1-1v-4c0-.6-.4-1-1-1H5.1c.4-2.8 2.8-5 5.7-5.1 M18.9 11c-.6 0-1 .4-1 1v4c0 .6.4 1 1 1h1c.6 0 1-.4 1-1v-3c0-4.4-3.6-8-8-8 M19 17v1.5c0 1.4-1.1 2.5-2.5 2.5H15 M7 16v.5"/>
                     </svg>
                     <h3>W pracy</h3>
                     <p>Dla HR, finansów, IT. Przygotowanie do spotkań.</p>
@@ -491,6 +435,5 @@
         }, { threshold: 0.5 });
         document.querySelectorAll('.doodle-icon, .doodle-small, .marker').forEach(el => observer.observe(el));
     </script>
-
 </body>
 </html>
