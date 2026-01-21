@@ -22,7 +22,7 @@
     }
     </script>
 
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23ffc400%22 stroke-width=%221.5%22><path d=%22M12 2L14 9L21 9L15 14L17 21L12 16L7 21L9 14L3 9L10 9L12 2Z%22/></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23ffc400%22 stroke-width=%221.5%22><path d=%22M12 3c.5 3.5 1.5 4.5 4.5 5-3 1-4 2-4.5 5.5-.5-3.5-1.5-4.5-4.5-5 3-1 4-2 4.5-5.5z%22/></svg>">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -115,7 +115,7 @@
         .mini-tile:hover { transform: translateY(-5px); border-color: var(--accent-yellow); box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
         .mini-tile h4 { font-size: 0.95rem; font-weight: 700; color: var(--accent-navy); margin: 0; }
         .mini-tile p { font-size: 0.8rem; line-height: 1.4; margin: 0; color: var(--text-light); }
-        .mini-tile .doodle-small { margin: 0 auto 5px auto; } /* Centrowanie ikon w kafelkach */
+        .mini-tile .doodle-small { margin: 0 auto 5px auto; display: block; }
 
         .personas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px; }
         .persona { background: var(--bg-cream); padding: 35px; border-radius: 20px; border: 1px solid rgba(0,0,0,0.03); transition: 0.3s; text-align: center; }
@@ -161,6 +161,7 @@
         .contact-form { max-width: 500px; margin: 0 auto; text-align: left; }
         .input-field { width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 10px; border: none; font-family: inherit; font-size: 1rem; }
         .btn-submit { background: var(--accent-yellow); color: var(--text-main); width: 100%; border: none; }
+        footer { text-align: center; padding: 50px 0; color: var(--text-light); font-size: 0.9rem; }
 
         .floating-btn { position: fixed; bottom: 30px; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 999; cursor: pointer; transition: 0.3s; }
         .whatsapp-btn { right: 30px; background-color: #25D366; }
@@ -169,7 +170,6 @@
         .cookie-banner { position: fixed; bottom: 0; left: 0; width: 100%; background: var(--text-main); color: #fff; padding: 15px 20px; text-align: center; z-index: 2000; font-size: 0.9rem; display: flex; justify-content: center; align-items: center; gap: 20px; transform: translateY(100%); transition: transform 0.5s ease; }
         .cookie-banner.show { transform: translateY(0); }
         .cookie-btn { background: var(--accent-yellow); color: var(--text-main); border: none; padding: 8px 20px; border-radius: 50px; font-weight: 700; cursor: pointer; }
-        footer { text-align: center; padding: 50px 0; color: var(--text-light); font-size: 0.9rem; }
 
         @media(max-width: 900px) {
             .hero-grid, .about-box, .personas { grid-template-columns: 1fr; }
@@ -235,7 +235,7 @@
                 <div class="about-tiles">
                     <div class="mini-tile">
                         <svg class="doodle-small" viewBox="0 0 24 24">
-                            <path d="M13 14h-1l-3 3v-3H7c-2 0-4-1.5-4-3.5S5 7 7 7h6c2 0 4 1.5 4 3.5S15 14 13 14z M17 11c1.5 0 3 1.2 3 2.5S18.5 16 17 16h-1l-2 2v-2h-1c-1.5 0-3-1.2-3-2.5"/>
+                            <path d="M21 11.5c0 3.6-4 6.5-9 6.5-.8 0-1.6-.1-2.4-.3l-4.6 2.3 1-4.5c-3.1-1-5-2.6-5-4 0-3.6 4-6.5 9-6.5s9 2.9 9 6.5z"/>
                         </svg>
                         <h4>Komunikacja</h4>
                         <p>➔ Mówimy od pierwszej minuty lekcji.</p>
@@ -437,6 +437,5 @@
         }, { threshold: 0.5 });
         document.querySelectorAll('.doodle-icon, .doodle-small, .marker').forEach(el => observer.observe(el));
     </script>
-
 </body>
 </html>
