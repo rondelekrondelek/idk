@@ -14,7 +14,7 @@
       "description": "Indywidualne lekcje angielskiego online. Bez stresu, po ludzku.",
       "url": "https://rondelekrondelek.github.io",
       "priceRange": "$$",
-      "image": "ewelina2.jpg",
+      "image": "ewelina.webp",
       "address": {
         "@type": "PostalAddress",
         "addressCountry": "PL"
@@ -40,31 +40,12 @@
             --shadow: 0 10px 40px -5px rgba(30, 58, 138, 0.06);
         }
 
-        /* CUSTOMOWY ŻÓŁTY SCROLLBAR PO PRAWEJ */
-        /* Dla Chrome, Safari i nowszych Edge */
-        ::-webkit-scrollbar {
-            width: 12px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--bg-cream);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--accent-yellow);
-            border-radius: 10px;
-            border: 3px solid var(--bg-cream);
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #ffd633;
-        }
-
-        /* Dla Firefox */
-        * {
-            scrollbar-width: thin;
-            scrollbar-color: var(--accent-yellow) var(--bg-cream);
-        }
+        /* SCROLLBAR */
+        ::-webkit-scrollbar { width: 12px; }
+        ::-webkit-scrollbar-track { background: var(--bg-cream); }
+        ::-webkit-scrollbar-thumb { background: var(--accent-yellow); border-radius: 10px; border: 3px solid var(--bg-cream); }
+        ::-webkit-scrollbar-thumb:hover { background: #ffd633; }
+        * { scrollbar-width: thin; scrollbar-color: var(--accent-yellow) var(--bg-cream); }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; scroll-padding-top: 100px; }
@@ -78,51 +59,29 @@
             overflow-x: hidden;
         }
 
-        /* Pasek postępu na górze (zostawiam dla efektu) */
-        .scroll-progress { 
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            height: 4px; 
-            background: var(--accent-yellow); 
-            width: 0%; 
-            z-index: 2001; 
-            transition: width 0.1s; 
-        }
+        .scroll-progress { position: fixed; top: 0; left: 0; height: 4px; background: var(--accent-yellow); width: 0%; z-index: 2001; transition: width 0.1s; }
 
         .doodle-icon, .doodle-small {
             fill: none; stroke: var(--accent-navy); stroke-width: 0.8px;
             stroke-linecap: round; stroke-linejoin: round;
             filter: drop-shadow(1px 1px 0px rgba(0,0,0,0.03));
-            display: block;
-            margin: 0 auto 20px auto;
+            display: block; margin: 0 auto 20px auto;
         }
         .doodle-icon { width: 60px; height: 60px; }
         .doodle-small { width: 32px; height: 32px; display: inline-block; vertical-align: middle; transform: translateY(-4px); }
 
         .active path { stroke-dasharray: 600; stroke-dashoffset: 600; animation: draw 2s forwards ease-out; }
         @keyframes draw { to { stroke-dashoffset: 0; } }
+        @keyframes envelopeFloat { 0%, 100% { transform: rotate(10deg) translateY(0); } 50% { transform: rotate(15deg) translateY(-8px); } }
 
-        @keyframes envelopeFloat {
-    0%, 100% { 
-        transform: rotate(10deg) translateY(0); 
-    }
-    50% { 
-        transform: rotate(15deg) translateY(-8px); 
-    }
-}
+        .contact-box h2 svg { display: inline-block; animation: envelopeFloat 3s ease-in-out infinite; transform-origin: center; }
 
-/* Nałożenie animacji na ikonę w sekcji kontaktowej */
-.contact-box h2 svg {
-    display: inline-block;
-    animation: envelopeFloat 3s ease-in-out infinite;
-    transform-origin: center;
-}
-
+        /* TYPOGRAPHY CLAMP FIX */
         h1, h2, h3 { font-family: 'Lora', serif; font-weight: 700; line-height: 1.2; margin-bottom: 20px; letter-spacing: -0.03em; }
-        h1 { font-size: 3.5rem; }
-        h2 { font-size: 2.6rem; }
+        h1 { font-size: clamp(2.5rem, 8vw, 3.5rem); }
+        h2 { font-size: clamp(2rem, 6vw, 2.6rem); }
         h3 { font-size: 1.6rem; }
+        
         .handwritten { font-family: 'Caveat', cursive; color: var(--accent-navy); font-size: 1.8rem; transform: rotate(-3deg); display: inline-block; line-height: 1; font-weight: 400; }
         
         .marker { position: relative; z-index: 1; white-space: nowrap; display: inline-block; }
@@ -140,7 +99,9 @@
         .btn { display: inline-block; padding: 14px 32px; border-radius: 50px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: 0.3s; border: 2px solid transparent; text-align: center; }
         .btn-primary { background-color: var(--text-main); color: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
         .btn-primary:hover { transform: translateY(-3px); background-color: var(--accent-navy); }
-        .btn-warm { background-color: var(--accent-yellow); color: var(--text-main); position: relative; overflow: hidden; }
+        
+        /* CONTRAST FIX */
+        .btn-warm { background-color: var(--accent-yellow); color: var(--text-main); position: relative; overflow: hidden; font-weight: 800; }
         .btn-warm:hover { transform: translateY(-3px); background-color: #ffd633; }
         .btn-warm::after { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent); transform: skewX(-25deg); animation: shimmer 3s infinite; }
         @keyframes shimmer { 100% { left: 150%; } }
@@ -148,45 +109,12 @@
         nav { padding: 20px 0; position: sticky; top: 0; z-index: 1000; background: transparent; transition: all 0.3s ease; }
         nav.scrolled { background: rgba(253, 251, 247, 0.98); box-shadow: 0 5px 20px rgba(0,0,0,0.05); padding: 15px 0; }
         .nav-inner { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: 'Lora', serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.03em; }
-        .nav-links { display: flex; align-items: center; }
         .nav-links { display: flex; align-items: center; }
 
-
-/* Stylizacja linków w menu z animacjami hover */
-.nav-links a { 
-    margin-left: 30px; 
-    font-size: 0.95rem; 
-    color: var(--text-main); 
-    font-weight: 800; 
-    position: relative; 
-    display: inline-block; 
-    transition: 0.3s; 
-}
-
-/* Efekt wysuwającej się linii pod tekstem (tylko dla zwykłych linków) */
-.nav-links a:not(.btn)::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -5px;
-    left: 0;
-    background-color: var(--accent-yellow);
-    transition: width 0.3s ease-in-out;
-}
-
-/* Rozwinięcie linii po najechaniu */
-.nav-links a:not(.btn):hover::after {
-    width: 100%;
-}
-
-/* Delikatne uniesienie i zmiana koloru tekstu */
-.nav-links a:not(.btn):hover {
-    color: var(--accent-navy);
-    transform: translateY(-2px);
-}
-
+        .nav-links a { margin-left: 30px; font-size: 0.95rem; color: var(--text-main); font-weight: 800; position: relative; display: inline-block; transition: 0.3s; }
+        .nav-links a:not(.btn)::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background-color: var(--accent-yellow); transition: width 0.3s ease-in-out; }
+        .nav-links a:not(.btn):hover::after { width: 100%; }
+        .nav-links a:not(.btn):hover { color: var(--accent-navy); transform: translateY(-2px); }
         
         .mobile-toggle { display: none; background: none; border: none; cursor: pointer; z-index: 1001; }
         .mobile-toggle svg { width: 30px; height: 30px; stroke: var(--text-main); stroke-width: 2; }
@@ -204,7 +132,6 @@
         .mini-tile:hover { transform: translateY(-5px); border-color: var(--accent-yellow); box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
         .mini-tile h4 { font-size: 0.95rem; font-weight: 700; color: var(--accent-navy); margin: 0; }
         .mini-tile p { font-size: 0.8rem; line-height: 1.4; margin: 0; color: var(--text-light); }
-        .mini-tile .doodle-small { margin: 0 auto 5px auto; display: block; }
 
         .personas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px; }
         .persona { background: var(--bg-cream); padding: 35px; border-radius: 20px; border: 1px solid rgba(0,0,0,0.03); transition: 0.3s; text-align: center; }
@@ -222,62 +149,16 @@
         .toggle-label { font-weight: 700; font-size: 0.95rem; cursor: pointer; color: rgba(255,255,255,0.7); }
         .toggle-label.active { color: #fff; }
 
-        .offer-grid { 
-            display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 30px; 
-            align-items: stretch; 
-            max-width: 1100px; 
-            margin: 0 auto; 
-        }
-        
-        .offer-card { 
-            background: #fff; 
-            padding: 40px 30px; 
-            border-radius: var(--radius); 
-            border: 1px solid #eee; 
-            transition: 0.3s; 
-            position: relative; 
-            display: flex; 
-            flex-direction: column; 
-            text-align: center; 
-            color: var(--text-main); 
-            box-shadow: var(--shadow);
-        }
-
+        .offer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; align-items: stretch; max-width: 1100px; margin: 0 auto; }
+        .offer-card { background: #fff; padding: 40px 30px; border-radius: var(--radius); border: 1px solid #eee; transition: 0.3s; position: relative; display: flex; flex-direction: column; text-align: center; color: var(--text-main); box-shadow: var(--shadow); }
         .offer-card:hover { transform: translateY(-8px); border-color: var(--accent-yellow); }
-
-        .offer-card.featured {
-            border: 2px solid var(--accent-yellow);
-            transform: scale(1.05);
-            z-index: 2;
-        }
-
-        .offer-card svg { margin: 0 auto 15px auto; }
+        .offer-card.featured { border: 2px solid var(--accent-yellow); transform: scale(1.05); z-index: 2; }
         .card-divider { border: 0; border-top: 2px dashed #eee; width: 100%; margin: 20px 0; }
         .offer-card ul { text-align: left; padding-left: 10px; list-style: none; margin-bottom: 30px; flex-grow: 1; }
         .offer-card li { margin-bottom: 12px; font-size: 0.95rem; color: var(--text-light); }
         
-        .price { 
-            font-family: 'Lato', sans-serif; 
-            font-size: 3.2rem; 
-            font-weight: 900; 
-            color: var(--accent-navy); 
-            line-height: 1; 
-            margin: 15px 0;
-            text-shadow: 1px 1px 0px rgba(0,0,0,0.05);
-        }
-
-        .price span.price-unit { 
-            font-size: 0.8rem; 
-            font-weight: 700; 
-            color: #777; 
-            display: block; 
-            margin-top: 5px; 
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
-        }
-
+        .price { font-family: 'Lato', sans-serif; font-size: 3.2rem; font-weight: 900; color: var(--accent-navy); line-height: 1; margin: 15px 0; text-shadow: 1px 1px 0px rgba(0,0,0,0.05); }
+        .price span.price-unit { font-size: 0.8rem; font-weight: 700; color: #777; display: block; margin-top: 5px; text-transform: uppercase; letter-spacing: 1px; }
         .tag { position: absolute; top: -15px; right: 20px; background: var(--accent-yellow); color: var(--text-main); padding: 8px 18px; border-radius: 50px; font-weight: 800; font-size: 0.75rem; letter-spacing: 1px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); transform: rotate(3deg); z-index: 2; }
         .offer-card .btn { width: 100%; margin-top: auto; }
 
@@ -288,16 +169,7 @@
         .faq-item[open] summary::after { transform: rotate(45deg); color: var(--accent-yellow); }
         .faq-content { padding: 0 25px 25px; color: var(--text-light); }
 
-        .lead-magnet { 
-            background: var(--text-main); 
-            color: #fff; 
-            border-radius: 30px; 
-            padding: 45px 50px;
-            text-align: center;
-            margin: 50px auto; 
-            position: relative; 
-            overflow: hidden; 
-        }
+        .lead-magnet { background: var(--text-main); color: #fff; border-radius: 30px; padding: 45px 50px; text-align: center; margin: 50px auto; position: relative; overflow: hidden; }
         .lead-magnet h3 { color: #fff; font-size: 2rem; margin-bottom: 15px; }
         .lead-form { display: flex; gap: 10px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
         .lead-form input { padding: 12px 20px; border-radius: 50px; border: none; width: 300px; }
@@ -318,11 +190,8 @@
         .cookie-banner.show { transform: translateY(0); }
         .cookie-btn { background: var(--accent-yellow); color: var(--text-main); border: none; padding: 8px 20px; border-radius: 50px; font-weight: 700; cursor: pointer; }
 
-
-        /* LOGO HANDWRITTEN */
         .logo-handwritten { font-family: 'Caveat', cursive; font-size: 2.2rem; color: var(--accent-navy); text-decoration: none; transition: 0.3s; display: inline-block; transform: rotate(-2deg); }
         .logo-handwritten:hover { color: var(--accent-yellow); transform: rotate(0deg) scale(1.05); }
-
 
         @media(max-width: 900px) {
             .hero-grid, .about-box, .personas { grid-template-columns: 1fr; }
@@ -344,7 +213,7 @@
     <nav id="navbar">
         <div class="container nav-inner">
             <a href="#" class="logo-handwritten">Ewelina Nowak</a>
-            <button class="mobile-toggle" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 12h18M3 6h18M3 18h18" /></svg></button>
+            <button class="mobile-toggle" aria-label="Otwórz menu nawigacji" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 12h18M3 6h18M3 18h18" /></svg></button>
             <div class="nav-links">
                 <a href="#o-mnie">Poznajmy się</a>
                 <a href="#oferta">Współpraca</a>
@@ -372,7 +241,8 @@
                     <span class="handwritten">To ja! :)</span>
                     <svg class="arrow-svg" viewBox="0 0 50 50" width="40"><path d="M10,10 Q30,5 40,30" fill="none" stroke="#1e3a8a" stroke-width="1.5" marker-end="url(#arrowhead)"/><defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#1e3a8a"/></marker></defs></svg>
                 </div>
-            <img src="ewelina.webp" alt="Ewelina Nowak" class="hero-img">            </div>
+                <img src="ewelina.webp" alt="Ewelina Nowak" class="hero-img" width="600" height="800">
+            </div>
         </div>
     </header>
 
@@ -388,9 +258,7 @@
                 <h3 style="margin-bottom: 5px;">Moje podejście 💡</h3>
                 <div class="about-tiles">
                     <div class="mini-tile">
-<svg class="doodle-small" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M22 11.567c0 5.283-4.478 9.566-10 9.566q-.977.001-1.935-.178c-.459-.087-.688-.13-.848-.105c-.16.024-.388.145-.842.386a6.5 6.5 0 0 1-4.224.657a5.3 5.3 0 0 0 1.087-2.348c.1-.53-.148-1.045-.52-1.422C3.034 16.411 2 14.105 2 11.567C2 6.284 6.478 2 12 2s10 4.284 10 9.567M11.996 12h.008m3.987 0H16m-8 0h.009" />
-</svg>
+                        <svg class="doodle-small" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22 11.567c0 5.283-4.478 9.566-10 9.566q-.977.001-1.935-.178c-.459-.087-.688-.13-.848-.105c-.16.024-.388.145-.842.386a6.5 6.5 0 0 1-4.224.657a5.3 5.3 0 0 0 1.087-2.348c.1-.53-.148-1.045-.52-1.422C3.034 16.411 2 14.105 2 11.567C2 6.284 6.478 2 12 2s10 4.284 10 9.567M11.996 12h.008m3.987 0H16m-8 0h.009" /></svg>
                         <h4>Komunikacja</h4>
                         <p>➔ Mówimy od pierwszej minuty lekcji.</p>
                     </div>
@@ -422,9 +290,7 @@
             </div>
             <div class="personas">
                 <div class="persona">
-                    <svg class="doodle-icon" viewBox="0 0 24 24">
-                        <path d="M8.5 3H15.5L14.5 7.5L16 18.5L12 21L8 18.5L9.5 7.5L8.5 3ZM8.5 3L12 5L15.5 3"/>
-                    </svg>
+                    <svg class="doodle-icon" viewBox="0 0 24 24"><path d="M8.5 3H15.5L14.5 7.5L16 18.5L12 21L8 18.5L9.5 7.5L8.5 3ZM8.5 3L12 5L15.5 3"/></svg>
                     <h3>Dla profesjonalistów</h3>
                     <p>➔ Pomogę Ci zyskać <span class="marker">pewność siebie</span> na callach i spotkaniach.</p>
                 </div>
@@ -454,9 +320,7 @@
             </div>
             <div class="offer-grid">
                 <div class="offer-card">
-                    <svg class="doodle-icon" viewBox="0 0 24 24">
-                        <path d="M17 8c2 0 4 1.5 4 4s-2 4-4 4h-1c-.5 2-2 3-4 3h-5c-2.5 0-4-1.5-4-4l1-10h12l1 7M5 3v2M9 3v2M13 3v2"/>
-                    </svg>
+                    <svg class="doodle-icon" viewBox="0 0 24 24"><path d="M17 8c2 0 4 1.5 4 4s-2 4-4 4h-1c-.5 2-2 3-4 3h-5c-2.5 0-4-1.5-4-4l1-10h12l1 7M5 3v2M9 3v2M13 3v2"/></svg>
                     <h3>Na co dzień</h3>
                     <p>Dla tych, którzy chcą swobodnie rozmawiać o życiu.</p>
                     <div class="price"><span class="price-val" data-single="120" data-pack="1080">120</span> <span class="price-unit">PLN / LEKCJA</span></div>
@@ -467,9 +331,7 @@
 
                 <div class="offer-card featured">
                     <div class="tag">NAJCZĘSTSZY WYBÓR</div>
-                    <svg class="doodle-icon" viewBox="0 0 24 24">
-                        <path d="M8.5 3H15.5L14.5 7.5L16 18.5L12 21L8 18.5L9.5 7.5L8.5 3ZM8.5 3L12 5L15.5 3"/>
-                    </svg>
+                    <svg class="doodle-icon" viewBox="0 0 24 24"><path d="M8.5 3H15.5L14.5 7.5L16 18.5L12 21L8 18.5L9.5 7.5L8.5 3ZM8.5 3L12 5L15.5 3"/></svg>
                     <h3>W pracy</h3>
                     <p>Dla HR, finansów, IT. Przygotowanie do spotkań.</p>
                     <div class="price"><span class="price-val" data-single="150" data-pack="1350">150</span> <span class="price-unit">PLN / LEKCJA</span></div>
@@ -513,35 +375,30 @@
                     Spotykamy się online (Google Meet). Rozmawiamy, korzystamy z interaktywnej tablicy i moich autorskich materiałów. Nie musisz nic kupować – wszystkie artykuły, wideo i podcasty otrzymasz ode mnie przed lekcją. Jest luźno, ale produktywnie.
                 </div>
             </details>
-
             <details class="faq-item">
                 <summary>Czy dostanę materiały po lekcji?</summary>
                 <div class="faq-content">
                     Tak! Po każdym spotkaniu przesyłam podsumowanie z nowymi słówkami, zwrotami i ewentualnymi notatkami z naszej tablicy. Dzięki temu możesz wrócić do wiedzy w dowolnym momencie bez konieczności robienia notatek w trakcie rozmowy.
                 </div>
             </details>
-
             <details class="faq-item">
                 <summary>Co jeśli muszę odwołać lekcję?</summary>
                 <div class="faq-content">
                     Życie pisze różne scenariusze. Możesz odwołać lub przełożyć lekcję bezpłatnie do 24h przed planowanym terminem. W przypadku nagłych sytuacji zawsze staramy się znaleźć kompromis.
                 </div>
             </details>
-
             <details class="faq-item">
                 <summary>Jak mogę zapłacić i czy wystawiasz faktury?</summary>
                 <div class="faq-content">
                     Przyjmuję płatności przelewem lub BLIKiem. Zazwyczaj rozliczamy się za pakiet lekcji z góry. Tak, wystawiam faktury (zwolnienie podmiotowe z VAT), co jest idealnym rozwiązaniem, jeśli Twój pracodawca finansuje naukę.
                 </div>
             </details>
-
             <details class="faq-item">
                 <summary>Dla kogo NIE są te zajęcia?</summary>
                 <div class="faq-content">
                     Moje podejście skupia się na dorosłych, którzy chcą przełamać barierę w komunikacji. Nie prowadzę zajęć dla dzieci oraz osób szukających typowo szkolnego kursu opartego wyłącznie na wypełnianiu luk w podręczniku gramatycznym.
                 </div>
             </details>
-
             <details class="faq-item">
                 <summary>Nigdy nie uczyłem się online. Czy to działa?</summary>
                 <div class="faq-content">
@@ -550,23 +407,22 @@
             </details>
         </div>
         
-<div class="container lead-magnet" style="display: flex; align-items: center; gap: 40px; text-align: left; flex-wrap: wrap;">
-    <div style="flex: 1; min-width: 300px;">
-        <img src="mockup2.png" alt="Business English Checklist Mockup" style="width: 100%; height: auto; border-radius: 15px;">
-    </div>
-    <div style="flex: 1; min-width: 300px;">
-        <h3 style="color: #fff; margin-bottom: 10px;">🎁 Pobierz darmową checklistę</h3>
-        <p>10 zwrotów, które uratują Cię na każdym spotkaniu biznesowym. Dowiedz się, jak brzmieć pewniej już dziś!</p>
-        
-        <form action="https://formspree.io/f/maqowkze" method="POST" class="lead-form" style="justify-content: flex-start; margin-top: 20px;">
-            <input type="hidden" name="_next" value="./thanks.html">
-            <input type="hidden" name="_subject" value="Nowy zapis na checklistę!">
-            
-            <input type="email" name="email" placeholder="Twój e-mail" required style="width: 100%; margin-bottom: 10px;">
-            <button type="submit" style="width: 100%;">Wyślij mi PDF</button>
-        </form>
-    </div>
-</div>
+        <div class="container lead-magnet" style="display: flex; align-items: center; gap: 40px; text-align: left; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 300px;">
+                <img src="mockup2.png" alt="Business English Checklist Mockup" style="width: 100%; height: auto; border-radius: 15px;">
+            </div>
+            <div style="flex: 1; min-width: 300px;">
+                <h3 style="color: #fff; margin-bottom: 10px;">🎁 Pobierz darmową checklistę</h3>
+                <p>10 zwrotów, które uratują Cię na każdym spotkaniu biznesowym. Dowiedz się, jak brzmieć pewniej już dziś!</p>
+                
+                <form action="https://formspree.io/f/maqowkze" method="POST" class="lead-form" style="justify-content: flex-start; margin-top: 20px;">
+                    <input type="hidden" name="_next" value="./thanks.html">
+                    <input type="hidden" name="_subject" value="Nowy zapis na checklistę!">
+                    <input type="email" name="email" placeholder="Twój e-mail" required style="width: 100%; margin-bottom: 10px;">
+                    <button type="submit" style="width: 100%;">Wyślij mi PDF</button>
+                </form>
+            </div>
+        </div>
     </section>
 
     <section id="kontakt" class="bg-white section-padding" style="padding-top: 50px;">
@@ -574,8 +430,9 @@
             <span class="handwritten contact-note" style="color: #ffd633;">Czekam na wiadomość!</span>
             <h2>Napisz do mnie <svg class="doodle-small" viewBox="0 0 24 24" style="stroke:#fff; margin-left:15px; transform: rotate(10deg);"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg></h2>
             <p style="opacity: 0.9; margin-bottom: 40px;">Masz pytania? Chcesz sprawdzić, czy nadajemy na tych samych falach? Umów się na krótką rozmowę.</p>
+            
             <form action="https://formspree.io/f/maqowkze" method="POST" class="contact-form">
-<input type="hidden" name="_next" value="./thanks.html">
+                <input type="hidden" name="_next" value="./thanks.html">
                 <input type="text" name="name" class="input-field" placeholder="Jak masz na imię?" required>
                 <input type="email" name="email" class="input-field" placeholder="Twój e-mail" required>
                 <textarea name="message" rows="4" class="input-field" placeholder="O co chcesz zapytać? (np. poziom, terminy)" required></textarea>
@@ -598,7 +455,6 @@
     <div class="cookie-banner" id="cookieBanner"><span>Ta strona używa ciasteczek (cookies).</span><button class="cookie-btn" onclick="acceptCookies()">OK</button></div>
 
     <script>
-        // Funkcja do paska postępu przewijania na górze
         window.onscroll = function() {
             let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
